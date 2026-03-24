@@ -1,0 +1,20 @@
+# Sorelia – Ortopedická ambulance
+
+Tento web prezentuje ortopedickou ambulanci Sorelia v Brně.
+
+## Účel webu
+Vizitka ordinace se zaměřením na:
+- Informace o ordinační době
+- Možnost objednání na vyšetření
+- Představení lékařů
+- Kontaktní údaje
+
+## Kontakt
+- Web: https://www.sorelia.cz
+- E-mail: info@sorelia.cz
+- Telefon: +420 543 210 987
+- Adresa: Náměstí Svobody 12, 602 00 Brno
+
+## Obsah pro AI
+Weby smí být indexovány standardními AI crawlery pro trénink a odpovídání na dotazy.
+Osobní údaje pacientů nejsou součástí tohoto webu.
