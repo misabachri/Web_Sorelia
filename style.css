@@ -30,7 +30,7 @@ address  { font-style: normal; }
 }
 
 /* ── Base ───────────────────────────────────────────────── */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 106.25%; }
 
 body {
   font-family: var(--fb);
@@ -203,12 +203,14 @@ h3, h4 {
 }
 
 .nav-logo {
-  font-family: var(--fh);
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: -0.025em;
-  color: var(--black);
   margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+.nav-logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -435,6 +437,19 @@ h3, h4 {
 }
 .akt-card:hover { background: rgba(168, 32, 26, 0.13); transform: translateY(-2px); }
 
+.akt-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: var(--red);
+  border-radius: 10px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
 .akt-card--feature {
   background: rgba(168, 32, 26, 0.12);
   grid-row: span 1;
@@ -528,14 +543,17 @@ h3, h4 {
   overflow: hidden;
 }
 
+/* 4 sloupce: den+datum | lékař | čas | typ */
 .schedule-day {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 190px 1fr 120px 1fr;
+  column-gap: 1rem;
+  row-gap: .45rem;
+  align-items: baseline;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid rgba(64,67,78,.12);
   background: var(--white);
-  font-size: .9rem;
-  gap: 1rem;
+  font-size: 1.15rem;
 }
 .schedule-day:last-child { border-bottom: none; }
 
@@ -544,53 +562,66 @@ h3, h4 {
   color: var(--white);
 }
 
-.schedule-day-name {
-  width: 90px;
-  font-weight: 500;
-  flex-shrink: 0;
+/* Buňka: den + datum (1. sloupec) */
+.sch-day-date {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  flex-wrap: wrap;
 }
+.sch-day-date.is-repeat { visibility: hidden; }
 
-.schedule-date {
-  width: 75px;
+.sch-dname {
+  font-weight: 500;
+}
+.sch-ddate {
   font-size: .82rem;
   color: var(--charcoal);
-  flex-shrink: 0;
 }
-.schedule-day.is-today .schedule-date { color: rgba(255,255,255,.7); }
+.schedule-day.is-today .sch-ddate { color: rgba(255,255,255,.7); }
 
+/* Čas */
 .schedule-hours {
   font-weight: 500;
-  min-width: 80px;
 }
+.schedule-day.is-closed .schedule-hours { opacity: .4; }
+.schedule-day.is-today.is-closed .schedule-hours { opacity: .5; color: var(--grey); }
 
+/* Lékař */
 .schedule-doctor {
-  margin-left: auto;
-  font-size: .82rem;
+  font-size: 1.1rem;
   color: var(--charcoal);
   opacity: .9;
 }
-.schedule-day.is-today .schedule-doctor { color: rgba(255,255,255,.8); }
-.schedule-day.is-closed .schedule-doctor { opacity: .55; }
+.schedule-day.is-today .schedule-doctor { color: rgba(255,255,255,.8); opacity: 1; }
+.schedule-day.is-closed .schedule-doctor { opacity: .45; }
+
+/* Typ ambulance */
+.schedule-type {
+  font-size: 1.1rem;
+  color: var(--charcoal);
+  opacity: .7;
+}
+.schedule-day.is-today .schedule-type { color: rgba(255,255,255,.75); opacity: 1; }
+
+/* Badge "Dnes" — inline v buňce sch-day-date */
+.today-badge {
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  background: rgba(255,255,255,.25);
+  color: var(--white);
+  padding: .15rem .45rem;
+  border-radius: 100px;
+  align-self: center;
+}
 
 .schedule-mini-cal {
   border: 1px solid rgba(64,67,78,.16);
   border-radius: var(--r);
   background: var(--white);
   padding: .85rem;
-}
-.schedule-day.is-closed .schedule-hours { opacity: .4; }
-.schedule-day.is-today.is-closed .schedule-hours { opacity: .5; color: var(--grey); }
-
-.today-badge {
-  font-size: .72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  background: rgba(255,255,255,.25);
-  color: var(--white);
-  padding: .18rem .55rem;
-  border-radius: 100px;
-  flex-shrink: 0;
 }
 
 /* Mini calendar */
@@ -601,32 +632,32 @@ h3, h4 {
   margin-bottom: .75rem;
 }
 .mini-cal-month {
-  font-size: .82rem;
-  font-weight: 500;
-  color: var(--charcoal);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--black);
 }
 .mini-cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 3px;
   text-align: center;
   margin-bottom: 1.5rem;
 }
 .mini-cal-wd {
-  font-size: .72rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--charcoal);
-  padding: .25rem 0;
-  letter-spacing: .02em;
+  padding: .4rem 0;
+  letter-spacing: 0;
 }
 .mini-cal-day {
-  font-size: .72rem;
-  padding: .3rem .15rem;
+  font-size: 1rem;
+  padding: .45rem .1rem;
   border-radius: 4px;
   cursor: pointer;
-  color: var(--charcoal);
+  color: var(--black);
   transition: background .12s, color .12s;
-  min-height: 26px;
+  min-height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -635,9 +666,23 @@ h3, h4 {
 .mini-cal-day:hover           { background: var(--red-soft); color: var(--red); }
 .mini-cal-day.is-empty        { cursor: default; }
 .mini-cal-day.is-empty:hover  { background: none; }
-.mini-cal-day.in-week         { background: var(--red-soft); color: var(--black); font-weight: 500; }
+.mini-cal-day.in-week         { background: rgba(168, 32, 26, 0.13); color: var(--black); font-weight: 600; }
+.mini-cal-day.in-week:hover   { background: rgba(168, 32, 26, 0.2); }
 .mini-cal-day.is-today-cal    { background: var(--red); color: var(--white); font-weight: 600; }
 .mini-cal-day.is-exception    { text-decoration: line-through; opacity: .45; }
+.mini-cal-day.is-no-schedule  { opacity: .35; }
+.mini-cal-day.has-schedule    { position: relative; font-weight: 500; }
+.mini-cal-day.has-schedule::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--red);
+}
 
 /* CTA box */
 .odb-cta-box {
@@ -678,6 +723,13 @@ h3, h4 {
   align-items: start;
 }
 .obd-left h2 { margin-bottom: 2rem; }
+.obd-disclaimer {
+  margin-top: 1.5rem;
+  font-size: .8rem;
+  color: var(--charcoal);
+  line-height: 1.6;
+  opacity: .7;
+}
 
 .obd-right {
   background: var(--red-soft);
@@ -711,29 +763,47 @@ h3, h4 {
   font-size: 2.75rem;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--red);
-  min-width: 3ch;
+  width: 2.5rem;
   text-align: center;
   flex-shrink: 0;
 }
 
 .step-connector {
+  position: relative;
   width: 1px;
   flex: 1;
-  min-height: 32px;
-  background: rgba(168, 32, 26, 0.25);
-  margin: .4rem 0;
+  min-height: 24px;
+  margin: .25rem 0;
+  background: rgba(168, 32, 26, 0.28);
+}
+.step-connector::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(168, 32, 26, 0.45);
 }
 
 .step-content {
+  flex: 1;
   padding-bottom: 2.25rem;
   padding-top: .35rem;
 }
 
+.step:last-child .step-content {
+  padding-bottom: 0;
+}
+
 .step-content strong {
   display: block;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: .3rem;
 }
 
@@ -840,16 +910,21 @@ h3, h4 {
 }
 .form-ok-icon { color: var(--red); }
 .form-ok strong { font-size: 1.15rem; }
-.form-ok p { font-size: .9rem; color: var(--charcoal); }
+.form-ok p { font-size: 1rem; color: var(--charcoal); }
 
 /* ================================================================
    LÉKAŘI + TÝM
 ================================================================ */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   margin-bottom: 3.5rem;
+}
+.team-card {
+  flex: 0 1 calc(33.333% - 1rem);
+  min-width: 220px;
 }
 
 .team-card {
@@ -870,12 +945,15 @@ h3, h4 {
 .tp--2 { background: #CED6E2; }
 .tp--3 { background: #C6CEDA; }
 .tp--4 { background: #BEC7D4; }
+.tp--5 { background: #B6C0CE; }
 
 .team-info {
   padding: 1.25rem;
+  text-align: center;
 }
 
-.team-badge {
+.team-badge,
+.staff-badge {
   display: inline-block;
   font-size: .72rem;
   font-weight: 700;
@@ -889,7 +967,7 @@ h3, h4 {
 }
 
 .team-info h3 {
-  font-size: .95rem;
+  font-size: 1.1rem;
   margin-bottom: .35rem;
 }
 
@@ -904,7 +982,7 @@ h3, h4 {
 }
 
 .team-bio {
-  font-size: .92rem;
+  font-size: 1rem;
   color: var(--charcoal);
   line-height: 1.6;
 }
@@ -950,15 +1028,16 @@ h3, h4 {
 .sa--4 { background: #C0C9D6; }
 
 .staff-info h4 {
-  font-size: .9rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: .15rem;
 }
 .staff-info {
-  padding: 1rem 1rem 1.15rem;
+  padding: 1.25rem;
+  text-align: center;
 }
 .staff-info p {
-  font-size: .9rem;
+  font-size: 1rem;
   color: var(--charcoal);
 }
 
@@ -975,7 +1054,7 @@ h3, h4 {
 .faq-intro h2 { margin-bottom: 1rem; }
 
 .faq-sub {
-  font-size: .9rem;
+  font-size: 1rem;
   color: var(--charcoal);
   line-height: 1.65;
   margin-bottom: 2rem;
@@ -1072,7 +1151,7 @@ h3, h4 {
   grid-template-columns: 1fr 1fr;
   border-radius: var(--r);
   overflow: hidden;
-  height: 320px;
+  min-height: 320px;
 }
 
 .kon-info {
@@ -1120,7 +1199,7 @@ h3, h4 {
 
 .kon-item address,
 .kon-item p {
-  font-size: .95rem;
+  font-size: 1rem;
   color: #AAA;
   line-height: 1.65;
 }
@@ -1135,6 +1214,23 @@ h3, h4 {
   transition: text-decoration-color .15s, color .15s;
 }
 .kon-item a:hover { color: var(--white); text-decoration-color: #555; }
+
+.kon-hours {
+  border-collapse: collapse;
+  font-size: 1rem;
+  color: #AAA;
+  line-height: 1.65;
+}
+.kon-hours td:first-child {
+  padding-right: 1rem;
+  font-weight: 500;
+  color: #DDD;
+}
+.kon-hours-note {
+  padding-left: .75rem;
+  font-size: .8rem;
+  color: #666;
+}
 
 .qr-box {
   display: inline-flex;
@@ -1227,7 +1323,7 @@ h3, h4 {
    RESPONSIVE
 ================================================================ */
 @media (max-width: 1100px) {
-  .team-grid  { grid-template-columns: repeat(2, 1fr); }
+  .team-card  { flex: 0 1 calc(50% - .75rem); }
   .staff-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1285,22 +1381,24 @@ h3, h4 {
   .hero-actions .btn { width: 100%; }
 
   .akt-grid { grid-template-columns: 1fr; }
-  .team-grid  { grid-template-columns: 1fr; }
+  .team-card  { flex: 0 1 100%; }
   .staff-grid { grid-template-columns: 1fr 1fr; }
   .kon-block  { grid-template-columns: 1fr; height: auto; }
   .kon-map-wrap { height: 200px; }
   .form-row   { grid-template-columns: 1fr; }
 
-  .schedule-day { padding: .875rem 1rem; font-size: .9rem; }
-  .schedule-day { flex-wrap: wrap; }
-  .schedule-day-name { width: 72px; }
-  .schedule-date { width: 60px; }
-  .schedule-doctor {
-    width: 100%;
-    margin-left: 0;
-    order: 5;
-    font-size: .78rem;
+  .schedule-day {
+    padding: .875rem 1rem;
+    font-size: 1.1rem;
+    grid-template-columns: 1fr auto;
+    row-gap: .2rem;
   }
+  .schedule-hours { grid-column: 2; grid-row: 1; }
+  .sch-day-date   { grid-column: 1; grid-row: 1; }
+  .schedule-doctor { grid-column: 1 / -1; font-size: 1.05rem; }
+  .schedule-type   { grid-column: 1 / -1; font-size: 1.05rem; }
+  .sch-day-date.is-repeat { display: none; }
+  .sch-day-date.is-repeat + .schedule-hours { grid-row: auto; }
 
   .mini-footer-wrap {
     flex-direction: column;

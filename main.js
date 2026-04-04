@@ -32,34 +32,64 @@ document.addEventListener('click', e => {
   }
 });
 
-// ── Ordinační doba ─────────────────────────────────────────
-const HOURS = {
-  1: { o: '8:00',  c: '14:00' }, // Po
-  2: { o: '8:00',  c: '16:00' }, // Út
-  3: null,                         // St – zavřeno
-  4: { o: '8:00',  c: '16:00' }, // Čt
-  5: { o: '8:00',  c: '13:00' }, // Pá
-  6: null,                         // So
-  0: null,                         // Ne
+// ── Ordinační doba – data ──────────────────────────────────
+// Klíč: 'YYYY-M-D' (bez nulového prefixu)
+// Každý den může mít více slotů: { time, doctor, type }
+// doctor: null = neuveden (UZV, kontroly apod.)
+const SCHEDULE = {
+  '2022-8-1': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2022-8-2': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+  ],
+  '2022-8-3': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2022-8-4': [
+    { time: '08:00–14:00', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+  ],
+  '2022-8-9': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+  ],
+  '2022-8-15': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2022-8-22': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2022-8-23': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+  ],
+  '2022-8-24': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2022-8-25': [
+    { time: '08:00–14:00', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+  ],
+  '2022-8-29': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2022-8-31': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
 };
 
-const DOCTORS = {
-  1: 'MUDr. Jana Nováková',
-  2: 'MUDr. Petr Kratochvíl',
-  3: 'Neordinuje',
-  4: 'MUDr. Alena Horáková',
-  5: 'MUDr. Martin Šimánek',
-};
+function scheduleKey(d) {
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+}
 
-// ── Výjimečně zavřeno (YYYY-M-D) ───────────────────────────
-const CLOSED_DATES = [
-  '2026-3-25', // St 25. 3.
-  '2026-3-26', // Čt 26. 3.
-];
-
-function isExceptionallyClosed(d) {
-  const key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-  return CLOSED_DATES.includes(key);
+function getSlotsForDay(d) {
+  return SCHEDULE[scheduleKey(d)] || null;
 }
 
 const DAY_NAMES = ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'];
@@ -69,7 +99,8 @@ const MONTH_NAMES = [
   'červenec','srpen','září','říjen','listopad','prosinec',
 ];
 
-const today = new Date();
+// TESTOVACÍ DATUM: 1. 8. 2022
+const today = new Date(2022, 7, 1);
 today.setHours(0, 0, 0, 0);
 
 function getMonday(d) {
@@ -102,15 +133,15 @@ function renderHeroWeek() {
   for (let i = 0; i < 5; i++) {
     const d = new Date(start);
     d.setDate(d.getDate() + i);
-    const dow      = d.getDay();
-    const hours    = isExceptionallyClosed(d) ? null : HOURS[dow];
-    const isToday  = isSameDay(d, today);
-    const hoursTxt = hours ? `${hours.o}–${hours.c}` : 'Zavřeno';
+    const dow     = d.getDay();
+    const slots   = getSlotsForDay(d);
+    const isToday = isSameDay(d, today);
+    const hoursTxt = slots ? slots[0].time : 'Neordinuje';
     const row = document.createElement('div');
     row.className = 'hero-week-day';
     row.setAttribute('role', 'listitem');
     if (isToday) row.classList.add('is-today');
-    if (!hours)  row.classList.add('is-closed');
+    if (!slots)  row.classList.add('is-closed');
     row.innerHTML = `<strong>${DAY_NAMES[dow]}</strong><span class="hero-week-hours">${hoursTxt}</span>`;
     el.appendChild(row);
   }
@@ -130,24 +161,75 @@ function renderSchedule() {
     const d = new Date(weekStart);
     d.setDate(d.getDate() + i);
     const dow     = d.getDay();
-    const hours   = isExceptionallyClosed(d) ? null : HOURS[dow];
-    const doctor  = hours ? (DOCTORS[dow] || 'Dle rozpisu') : 'Neordinuje';
+    const slots   = getSlotsForDay(d);
     const isToday = isSameDay(d, today);
-    const hoursTxt = hours ? `${hours.o}–${hours.c}` : 'Zavřeno';
 
     if (daysEl) {
       const row = document.createElement('div');
       row.className = 'schedule-day';
       row.setAttribute('role', 'listitem');
       if (isToday) row.classList.add('is-today');
-      if (!hours) row.classList.add('is-closed');
-      row.innerHTML = `
-        <span class="schedule-day-name">${DAY_NAMES[dow]}</span>
-        <span class="schedule-date">${fmt(d)}</span>
-        <span class="schedule-hours">${hoursTxt}</span>
-        <span class="schedule-doctor">${doctor}</span>
-        ${isToday ? '<span class="today-badge">Dnes</span>' : ''}
-      `;
+      if (!slots)  row.classList.add('is-closed');
+
+      // Každý slot přispívá 4 přímými dětmi do CSS gridu:
+      // [sch-day-date] [schedule-hours] [schedule-doctor] [schedule-type]
+      let html = '';
+      if (slots) {
+        // null znamená "stejný lékař jako předchozí slot" – vyřeší se dopředu
+        const resolved = [];
+        for (let i = 0; i < slots.length; i++) {
+          resolved.push({
+            ...slots[i],
+            doctor: slots[i].doctor !== null ? slots[i].doctor
+                  : (i > 0 ? resolved[i - 1].doctor : null),
+          });
+        }
+
+        resolved.forEach((s, idx) => {
+          const repeatCls = idx > 0 ? ' is-repeat' : '';
+          const badge     = (idx === 0 && isToday) ? '<span class="today-badge">Dnes</span>' : '';
+
+          // Jméno lékaře zobrazíme jen jednou – při první změně lékaře v daném dni.
+          // Pokud stejný lékař pokrývá více po sobě jdoucích slotů, buňka se roztáhne
+          // přes všechny tyto řádky a jméno se vycentruje na střed.
+          const sameAsPrev = idx > 0 && s.doctor === resolved[idx - 1].doctor;
+          let doctorHtml = '';
+          if (!sameAsPrev) {
+            let span = 1;
+            for (let j = idx + 1; j < resolved.length; j++) {
+              if (resolved[j].doctor === s.doctor) span++;
+              else break;
+            }
+            const spanStyle = span > 1
+              ? ` style="grid-row: span ${span}; align-self: center;"`
+              : '';
+            doctorHtml = `<span class="schedule-doctor"${spanStyle}>${s.doctor || '—'}</span>`;
+          }
+
+          html += `
+            <span class="sch-day-date${repeatCls}">
+              <span class="sch-dname">${DAY_NAMES[dow]}</span>
+              <span class="sch-ddate">${fmt(d)}</span>
+              ${badge}
+            </span>
+            ${doctorHtml}
+            <span class="schedule-hours">${s.time}</span>
+            <span class="schedule-type">${s.type}</span>
+          `;
+        });
+      } else {
+        html = `
+          <span class="sch-day-date">
+            <span class="sch-dname">${DAY_NAMES[dow]}</span>
+            <span class="sch-ddate">${fmt(d)}</span>
+          </span>
+          <span class="schedule-doctor"></span>
+          <span class="schedule-hours">Neordinuje</span>
+          <span class="schedule-type"></span>
+        `;
+      }
+
+      row.innerHTML = html;
       daysEl.appendChild(row);
     }
   }
@@ -161,8 +243,8 @@ function renderMiniCal(targetId) {
   const year  = weekStart.getFullYear();
   const month = weekStart.getMonth();
 
-  const firstDay   = new Date(year, month, 1);
-  const lastDay    = new Date(year, month + 1, 0);
+  const firstDay    = new Date(year, month, 1);
+  const lastDay     = new Date(year, month + 1, 0);
   const weekEndDate = new Date(weekStart);
   weekEndDate.setDate(weekEndDate.getDate() + 6);
 
@@ -184,14 +266,15 @@ function renderMiniCal(targetId) {
     html += '<span class="mini-cal-day is-empty" aria-hidden="true"></span>';
 
   for (let d = 1; d <= lastDay.getDate(); d++) {
-    const cell = new Date(year, month, d);
-    const isT  = isSameDay(cell, today);
-    const inW  = cell >= weekStart && cell <= weekEndDate;
-    const isEx = isExceptionallyClosed(cell);
-    let cls    = 'mini-cal-day';
-    if (isT)       cls += ' is-today-cal';
-    else if (inW)  cls += ' in-week';
-    if (isEx)      cls += ' is-exception';
+    const cell     = new Date(year, month, d);
+    const isT      = isSameDay(cell, today);
+    const inW      = cell >= weekStart && cell <= weekEndDate;
+    const hasSlots = !!getSlotsForDay(cell);
+    let cls = 'mini-cal-day';
+    if (isT)            cls += ' is-today-cal';
+    else if (inW)       cls += ' in-week';
+    else if (hasSlots)  cls += ' has-schedule';
+    if (!hasSlots)      cls += ' is-no-schedule';
     html += `<span class="${cls}" role="button" tabindex="0"
       data-ts="${cell.getTime()}" aria-label="${d}. ${month+1}. ${year}"
       aria-pressed="${inW}">${d}</span>`;
