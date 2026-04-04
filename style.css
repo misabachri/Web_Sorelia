@@ -1356,7 +1356,9 @@ h3, h4 {
   }
   .nav-links.is-open a:hover { background: var(--red-soft); }
   .nav-cta-mob { display: block; }
-  .nav-cta-mob a { margin-top: .375rem; display: flex; border-radius: calc(var(--r) - 2px); }
+  .nav-cta-mob a { margin-top: .375rem; display: flex; }
+  .nav-links.is-open .nav-cta-mob a { border-radius: 100px; color: var(--white); }
+  .nav-links.is-open .nav-cta-mob a:hover { background: #8A1A15; border-color: #8A1A15; }
 
   .hero-grid { grid-template-columns: 1fr; min-height: auto; }
   .hero-visual { min-height: auto; border-left: none; }
