@@ -37,50 +37,72 @@ document.addEventListener('click', e => {
 // Každý den může mít více slotů: { time, doctor, type }
 // doctor: null = neuveden (UZV, kontroly apod.)
 const SCHEDULE = {
-  '2022-8-1': [
-    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  '2026-6-1': [
+    { time: '08:00–11:00', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '12:00–18:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
-  '2022-8-2': [
+  '2026-6-2': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
-    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2022-8-3': [
+  '2026-6-3': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-6-4': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-6-8': [
+    { time: '08:00–18:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+  ],
+  '2026-6-9': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
-  ],
-  '2022-8-4': [
-    { time: '08:00–14:00', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
-  ],
-  '2022-8-9': [
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
-    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2022-8-15': [
+  '2026-6-10': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-6-11': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-6-15': [
+    { time: '12:00–18:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+  ],
+  '2026-6-16': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-  ],
-  '2022-8-22': [
-    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-  ],
-  '2022-8-23': [
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
-    { time: '16:00–17:00', doctor: null,                     type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                     type: 'Kontroly' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2022-8-24': [
+  '2026-6-17': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-6-18': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-6-23': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2022-8-25': [
-    { time: '08:00–14:00', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+  '2026-6-24': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
   ],
-  '2022-8-29': [
-    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  '2026-6-29': [
+    { time: '08:00–18:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
-  '2022-8-31': [
-    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '14:30–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  '2026-6-30': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
 };
 
@@ -99,8 +121,7 @@ const MONTH_NAMES = [
   'červenec','srpen','září','říjen','listopad','prosinec',
 ];
 
-// TESTOVACÍ DATUM: 1. 8. 2022
-const today = new Date(2022, 7, 1);
+const today = new Date();
 today.setHours(0, 0, 0, 0);
 
 function getMonday(d) {
@@ -108,6 +129,14 @@ function getMonday(d) {
   const dow  = date.getDay();
   date.setDate(date.getDate() + (dow === 0 ? -6 : 1 - dow));
   date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+function getDefaultWeekStart(d) {
+  const date = getMonday(d);
+  const dow = d.getDay();
+  if (dow === 6) date.setDate(date.getDate() + 7);
+  if (dow === 0) date.setDate(date.getDate() + 7);
   return date;
 }
 
@@ -119,13 +148,13 @@ function isSameDay(a, b) {
 
 function fmt(d) { return `${d.getDate()}.\u00a0${d.getMonth() + 1}.`; }
 
-let weekStart = getMonday(today);
+let weekStart = getDefaultWeekStart(today);
 
 function renderHeroWeek() {
   const el = document.getElementById('hero-week-days');
   if (!el) return;
   el.innerHTML = '';
-  const start = getMonday(today);
+  const start = getDefaultWeekStart(today);
   const end = new Date(start);
   end.setDate(end.getDate() + 4);
   const rangeEl = document.getElementById('hero-week-range');
@@ -316,36 +345,46 @@ document.addEventListener('click', e => {
   answer.hidden = expanded;
 });
 
-// ── Form ────────────────────────────────────────────────────
-const form     = document.getElementById('objednani-form');
-const formOk   = document.getElementById('form-success');
-const telInput = document.getElementById('telefon');
-const telErr   = document.getElementById('tel-error');
+// ── Formspree form ─────────────────────────────────────────
+const form = document.getElementById('sorelia-form');
+const successMessage = document.getElementById('form-success');
+const errorMessage = document.getElementById('form-error');
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (document.getElementById('hp-field').value) return;
+if (form && successMessage && errorMessage) {
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
 
-  const tel = telInput.value.trim();
-  if (!tel) {
-    telInput.classList.add('is-invalid');
-    telInput.setAttribute('aria-invalid', 'true');
-    telErr.hidden = false;
-    telInput.focus();
-    return;
-  }
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData(form);
 
-  telInput.classList.remove('is-invalid');
-  telInput.removeAttribute('aria-invalid');
-  telErr.hidden = true;
-  form.hidden   = true;
-  formOk.hidden = false;
-});
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Odesílám...';
+    }
 
-telInput.addEventListener('input', () => {
-  if (telInput.value.trim()) {
-    telInput.classList.remove('is-invalid');
-    telInput.removeAttribute('aria-invalid');
-    telErr.hidden = true;
-  }
-});
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        successMessage.style.display = 'flex';
+        errorMessage.style.display = 'none';
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    } catch (error) {
+      errorMessage.style.display = 'block';
+    } finally {
+      if (submitButton && form.style.display !== 'none') {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Požádat o termín';
+      }
+    }
+  });
+}

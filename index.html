@@ -52,7 +52,11 @@
     <div class="hero-text">
       <p class="eyebrow">
         <span class="eyebrow-dot" aria-hidden="true"></span>
-        Ortopedická ambulance · Klášterec nad Ohří
+        <span class="eyebrow-text">
+          <span>Ortopedická ambulance</span>
+          <span class="eyebrow-sep" aria-hidden="true">·</span>
+          <span class="eyebrow-place">Klášterec nad Ohří</span>
+        </span>
       </p>
       <h1 id="hero-h1">Sorelia</h1>
       <p class="hero-lead">Specializovaná péče<br>o pohybový aparát.</p>
@@ -69,10 +73,7 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-photo-ph" aria-label="Fotografie prostor ambulance Sorelia">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C0BAB6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M9 5l1.5-2h3L15 5"/></svg>
-        <p>Fotografie ambulance</p>
-      </div>
+      <img class="hero-photo" src="hero.jpeg" alt="Ordinace ortopedické ambulance Sorelia" width="2000" height="1500" fetchpriority="high">
     </div>
 
   </div>
@@ -196,50 +197,45 @@
       </div>
 
       <div class="obd-right">
-        <form class="obd-form" id="objednani-form" novalidate aria-label="Objednávkový formulář">
-          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot" id="hp-field">
+        <form id="sorelia-form" action="https://formspree.io/f/xzdwonlp" method="POST" class="contact-form">
+          <input type="text" name="jmeno" placeholder="Jméno a příjmení*" autocomplete="name" required>
 
-          <div class="form-row">
-            <div class="form-field">
-              <label for="jmeno">Jméno a příjmení</label>
-              <input type="text" id="jmeno" name="jmeno" autocomplete="name" placeholder="Jana Nováková">
-            </div>
-            <div class="form-field">
-              <label for="telefon">Telefon <span class="req" aria-label="povinné">*</span></label>
-              <input type="tel" id="telefon" name="telefon" required autocomplete="tel" placeholder="+420 xxx xxx xxx" aria-required="true">
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" autocomplete="email" placeholder="vas@email.cz">
-          </div>
-          <div class="form-field">
-            <label for="lekar">Výběr lékaře</label>
-            <select id="lekar" name="lekar">
-              <option value="">– Vyberte lékaře –</option>
-              <option value="novakova">MUDr. Jana Nováková</option>
-              <option value="kratochvil">MUDr. Petr Kratochvíl</option>
-              <option value="horakova">MUDr. Alena Horáková</option>
-              <option value="simanek">MUDr. Martin Šimánek</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="zprava">Zpráva</label>
-            <textarea id="zprava" name="zprava" rows="4" placeholder="Popište důvod vaší návštěvy…"></textarea>
-          </div>
-          <p class="form-err" id="tel-error" role="alert" hidden>Prosím vyplňte telefonní číslo.</p>
-          <button type="submit" class="btn btn-primary btn-full">
-            Odeslat poptávku
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-          </button>
-          <p class="form-note">* povinné pole · odpovídáme do 24 hodin</p>
+          <input type="tel" name="telefon" placeholder="Telefon*" autocomplete="tel" required>
+
+          <input type="email" name="email" placeholder="E-mail*" autocomplete="email" required>
+
+          <select name="lekar" required>
+            <option value="">Vyberte lékaře*</option>
+            <option value="MUDr. Jiří Šťovíček">MUDr. Jiří Šťovíček</option>
+            <option value="MUDr. Tomáš Bachratý">MUDr. Tomáš Bachratý</option>
+            <option value="prim. MUDr. Radoslav Vrábel">prim. MUDr. Radoslav Vrábel</option>
+            <option value="MUDr. Antonín Pultár">MUDr. Antonín Pultár</option>
+            <option value="MUDr. Josef Zíma">MUDr. Josef Zíma</option>
+          </select>
+
+          <textarea name="duvod_navstevy" rows="5" placeholder="Popište důvod své návštěvy*" required></textarea>
+
+          <label class="gdpr-checkbox">
+            <input type="checkbox" name="souhlas_gdpr" value="ano" required>
+            <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení mého dotazu.</span>
+          </label>
+
+          <input type="text" name="_gotcha" style="display:none">
+
+          <p class="form-note">
+            Odesláním formuláře nevzniká automatická rezervace termínu. Ordinace vás bude kontaktovat zpět a domluví s vámi konkrétní čas vyšetření.
+          </p>
+
+          <button type="submit" class="btn btn-primary btn-full">Požádat o termín</button>
         </form>
-        <div class="form-ok" id="form-success" hidden role="status" aria-live="polite">
-          <div class="form-ok-icon" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#A8201A" stroke-width="1.5"/><path d="M10 16l4 4 8-8" stroke="#A8201A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <strong>Odesláno!</strong>
-          <p>Ozveme se vám do 24 hodin.</p>
+
+        <div class="form-ok" id="form-success" style="display:none;" role="status" aria-live="polite">
+          <h3>Děkujeme, zpráva byla odeslána.</h3>
+          <p>V nejbližší pracovní době vás budeme kontaktovat a domluvíme s vámi konkrétní čas vyšetření.</p>
+        </div>
+
+        <div class="form-error" id="form-error" style="display:none;" role="alert">
+          <p>Omlouváme se, zprávu se nepodařilo odeslat. Zkuste to prosím znovu, případně nás kontaktujte telefonicky.</p>
         </div>
       </div>
 
@@ -260,7 +256,15 @@
     <div class="team-grid">
 
       <article class="team-card">
-        <div class="team-photo tp--1" role="img" aria-label="MUDr. Jiří Šťovíček"></div>
+        <div class="team-photo tp--1" role="img" aria-label="MUDr. Jiří Šťovíček">
+          <svg class="person-icon person-icon--doctor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2v2"/>
+            <path d="M5 2v2"/>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
           <h3>MUDr. Jiří Šťovíček</h3>
@@ -268,7 +272,15 @@
       </article>
 
       <article class="team-card">
-        <div class="team-photo tp--2" role="img" aria-label="MUDr. Tomáš Bachratý"></div>
+        <div class="team-photo tp--2" role="img" aria-label="MUDr. Tomáš Bachratý">
+          <svg class="person-icon person-icon--doctor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2v2"/>
+            <path d="M5 2v2"/>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
           <h3>MUDr. Tomáš Bachratý</h3>
@@ -276,7 +288,15 @@
       </article>
 
       <article class="team-card">
-        <div class="team-photo tp--3" role="img" aria-label="prim. MUDr. Radoslav Vrabeľ"></div>
+        <div class="team-photo tp--3" role="img" aria-label="prim. MUDr. Radoslav Vrabeľ">
+          <svg class="person-icon person-icon--doctor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2v2"/>
+            <path d="M5 2v2"/>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
           <h3>prim. MUDr. Radoslav Vrabeľ</h3>
@@ -284,7 +304,15 @@
       </article>
 
       <article class="team-card">
-        <div class="team-photo tp--4" role="img" aria-label="MUDr. Antonín Pultar"></div>
+        <div class="team-photo tp--4" role="img" aria-label="MUDr. Antonín Pultar">
+          <svg class="person-icon person-icon--doctor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2v2"/>
+            <path d="M5 2v2"/>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
           <h3>MUDr. Antonín Pultar</h3>
@@ -292,7 +320,15 @@
       </article>
 
       <article class="team-card">
-        <div class="team-photo tp--5" role="img" aria-label="MUDr. Josef Zima"></div>
+        <div class="team-photo tp--5" role="img" aria-label="MUDr. Josef Zima">
+          <svg class="person-icon person-icon--doctor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2v2"/>
+            <path d="M5 2v2"/>
+            <path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/>
+            <path d="M8 15a6 6 0 0 0 12 0v-3"/>
+            <circle cx="20" cy="10" r="2"/>
+          </svg>
+        </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
           <h3>MUDr. Josef Zima</h3>
@@ -305,28 +341,53 @@
 
     <div class="staff-grid">
       <article class="staff-card">
-        <div class="staff-photo sa--1" aria-hidden="true"></div>
+        <div class="staff-photo sa--1" role="img" aria-label="Zdravotní sestra Ivana Kučerová">
+          <svg class="person-icon person-icon--nurse" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v6"/>
+            <path d="M9 6h6"/>
+            <circle cx="12" cy="13" r="4"/>
+            <path d="M5 21a7 7 0 0 1 14 0"/>
+          </svg>
+        </div>
         <div class="staff-info">
           <span class="staff-badge">Zdravotní sestra</span>
           <h4>Ivana Kučerová</h4>
         </div>
       </article>
       <article class="staff-card">
-        <div class="staff-photo sa--2" aria-hidden="true"></div>
+        <div class="staff-photo sa--2" role="img" aria-label="Zdravotní sestra Jana Antonová">
+          <svg class="person-icon person-icon--nurse" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v6"/>
+            <path d="M9 6h6"/>
+            <circle cx="12" cy="13" r="4"/>
+            <path d="M5 21a7 7 0 0 1 14 0"/>
+          </svg>
+        </div>
         <div class="staff-info">
           <span class="staff-badge">Zdravotní sestra</span>
           <h4>Jana Antonová</h4>
         </div>
       </article>
       <article class="staff-card">
-        <div class="staff-photo sa--3" aria-hidden="true"></div>
+        <div class="staff-photo sa--3" role="img" aria-label="Zdravotní sestra Štěpánka Szalay">
+          <svg class="person-icon person-icon--nurse" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v6"/>
+            <path d="M9 6h6"/>
+            <circle cx="12" cy="13" r="4"/>
+            <path d="M5 21a7 7 0 0 1 14 0"/>
+          </svg>
+        </div>
         <div class="staff-info">
           <span class="staff-badge">Zdravotní sestra</span>
           <h4>Štěpánka Szalay</h4>
         </div>
       </article>
       <article class="staff-card">
-        <div class="staff-photo sa--4" aria-hidden="true"></div>
+        <div class="staff-photo sa--4" role="img" aria-label="Protetik Roman Prošek">
+          <svg class="person-icon person-icon--care" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.7 6.3a4 4 0 0 0-5 5L4 17v3h3l5.7-5.7a4 4 0 0 0 5-5l-2.4 2.4-3-3 2.4-2.4z"/>
+          </svg>
+        </div>
         <div class="staff-info">
           <span class="staff-badge">Protetik</span>
           <h4>Roman Prošek</h4>
