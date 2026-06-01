@@ -27,6 +27,7 @@ address  { font-style: normal; }
   --gutter:   88%;
   --r:        8px;
   --gap:      clamp(64px, 8vw, 112px);
+  --schedule-nav-w: 330px;
 }
 
 /* ── Base ───────────────────────────────────────────────── */
@@ -519,15 +520,18 @@ h3, h4 {
 .schedule-nav-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
+  width: var(--schedule-nav-w);
+  max-width: 100%;
 }
 
 .schedule-week-label {
   font-family: var(--fh);
-  font-size: .9rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: var(--charcoal);
-  min-width: 180px;
+  min-width: 210px;
   text-align: center;
 }
 
@@ -547,7 +551,7 @@ h3, h4 {
 
 .odb-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr var(--schedule-nav-w);
   gap: 3rem;
   align-items: start;
 }
@@ -600,6 +604,15 @@ h3, h4 {
 .schedule-hours {
   font-weight: 500;
 }
+.schedule-day.is-friday-closed .schedule-hours,
+.schedule-day.is-pending-schedule .schedule-hours {
+  grid-column: 3 / 5;
+  white-space: nowrap;
+}
+.schedule-day.is-friday-closed .schedule-type,
+.schedule-day.is-pending-schedule .schedule-type {
+  display: none;
+}
 .schedule-day.is-closed .schedule-hours { opacity: .4; }
 .schedule-day.is-today.is-closed .schedule-hours { opacity: .5; color: var(--grey); }
 
@@ -638,6 +651,7 @@ h3, h4 {
   border-radius: var(--r);
   background: var(--white);
   padding: .85rem;
+  width: 100%;
 }
 
 /* Mini calendar */
@@ -647,10 +661,29 @@ h3, h4 {
   justify-content: space-between;
   margin-bottom: .75rem;
 }
+.mini-cal-nav {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(64,67,78,.14);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, color .12s;
+}
+.mini-cal-nav:hover {
+  background: var(--red-soft);
+  border-color: rgba(168, 32, 26, .22);
+  color: var(--red);
+}
 .mini-cal-month {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--black);
+  text-align: center;
 }
 .mini-cal-grid {
   display: grid;
@@ -971,6 +1004,15 @@ h3, h4 {
 /* ================================================================
    LÉKAŘI + TÝM
 ================================================================ */
+.lekari .sec-head,
+.team-sub-h {
+  text-align: center;
+}
+
+.lekari .sec-label {
+  justify-content: center;
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -1124,6 +1166,109 @@ h3, h4 {
 .staff-info p {
   font-size: 1rem;
   color: var(--charcoal);
+}
+
+/* ================================================================
+   OPENCAST
+================================================================ */
+.opencast {
+  background: var(--white);
+  padding: 0;
+}
+
+.opencast-grid {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  width: 100%;
+  gap: 0;
+  align-items: stretch;
+}
+
+.opencast-media {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: rgba(168, 32, 26, 0.06);
+}
+
+.opencast-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(168, 32, 26, 0.14) 0%, rgba(168, 32, 26, 0.07) 26%, rgba(168, 32, 26, 0) 54%),
+    linear-gradient(115deg, rgba(168, 32, 26, 0.12) 0%, rgba(168, 32, 26, 0.06) 38%, rgba(168, 32, 26, 0) 76%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+}
+
+.opencast-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.opencast-content {
+  padding: clamp(3rem, 6vw, 6rem)
+           max(6vw, calc((100vw - var(--max-w)) / 2))
+           clamp(3rem, 6vw, 6rem)
+           clamp(2rem, 4vw, 5rem);
+}
+
+.opencast-content h2 {
+  margin-bottom: 1.25rem;
+}
+
+.opencast-lead {
+  color: var(--charcoal);
+  max-width: 58ch;
+  margin-bottom: 1.5rem;
+}
+
+.opencast-list {
+  display: grid;
+  gap: .8rem;
+  margin-bottom: 1.25rem;
+}
+
+.opencast-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--charcoal);
+}
+
+.opencast-list li::before {
+  content: '';
+  position: absolute;
+  top: .72em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.opencast-note {
+  font-size: .95rem;
+  color: var(--charcoal);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.opencast-note a {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: rgba(168, 32, 26, 0.35);
+  text-underline-offset: 3px;
+}
+
+.opencast-note a:hover {
+  text-decoration-color: var(--red);
 }
 
 /* ================================================================
@@ -1459,6 +1604,12 @@ h3, h4 {
 
   .odb-grid { grid-template-columns: 1fr; }
   .obd-grid { grid-template-columns: 1fr; }
+  .opencast-grid { grid-template-columns: 1fr; }
+  .opencast-content {
+    order: 1;
+    padding: clamp(3rem, 6vw, 5rem) max(4vw, calc((100vw - var(--max-w)) / 2));
+  }
+  .opencast-media { order: 2; aspect-ratio: 4 / 3; height: auto; min-height: 0; }
   .faq-layout { grid-template-columns: 1fr; }
 }
 
@@ -1485,6 +1636,8 @@ h3, h4 {
     row-gap: .2rem;
   }
   .schedule-hours { grid-column: 2; grid-row: 1; }
+  .schedule-day.is-friday-closed .schedule-hours,
+  .schedule-day.is-pending-schedule .schedule-hours { grid-column: 1 / -1; grid-row: 2; white-space: normal; }
   .sch-day-date   { grid-column: 1; grid-row: 1; }
   .schedule-doctor { grid-column: 1 / -1; font-size: 1.05rem; }
   .schedule-type   { grid-column: 1 / -1; font-size: 1.05rem; }

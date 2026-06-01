@@ -114,6 +114,11 @@ function getSlotsForDay(d) {
   return SCHEDULE[scheduleKey(d)] || null;
 }
 
+function closedTextForDay(d) {
+  if (d.getMonth() === 6) return 'Bude doplněno';
+  return d.getDay() === 5 ? 'Ordinační doba po domluvě' : 'Neordinuje';
+}
+
 const DAY_NAMES = ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'];
 
 const MONTH_NAMES = [
@@ -149,6 +154,7 @@ function isSameDay(a, b) {
 function fmt(d) { return `${d.getDate()}.\u00a0${d.getMonth() + 1}.`; }
 
 let weekStart = getDefaultWeekStart(today);
+let calendarViewDate = new Date(weekStart);
 
 function renderHeroWeek() {
   const el = document.getElementById('hero-week-days');
@@ -165,7 +171,7 @@ function renderHeroWeek() {
     const dow     = d.getDay();
     const slots   = getSlotsForDay(d);
     const isToday = isSameDay(d, today);
-    const hoursTxt = slots ? slots[0].time : 'Neordinuje';
+    const hoursTxt = slots ? slots[0].time : closedTextForDay(d);
     const row = document.createElement('div');
     row.className = 'hero-week-day';
     row.setAttribute('role', 'listitem');
@@ -199,6 +205,8 @@ function renderSchedule() {
       row.setAttribute('role', 'listitem');
       if (isToday) row.classList.add('is-today');
       if (!slots)  row.classList.add('is-closed');
+      if (!slots && dow === 5) row.classList.add('is-friday-closed');
+      if (!slots && closedTextForDay(d) === 'Bude doplněno') row.classList.add('is-pending-schedule');
 
       // Každý slot přispívá 4 přímými dětmi do CSS gridu:
       // [sch-day-date] [schedule-hours] [schedule-doctor] [schedule-type]
@@ -253,7 +261,7 @@ function renderSchedule() {
             <span class="sch-ddate">${fmt(d)}</span>
           </span>
           <span class="schedule-doctor"></span>
-          <span class="schedule-hours">Neordinuje</span>
+          <span class="schedule-hours">${closedTextForDay(d)}</span>
           <span class="schedule-type"></span>
         `;
       }
@@ -269,8 +277,8 @@ function renderMiniCal(targetId) {
   const calEl = document.getElementById(targetId);
   if (!calEl) return;
 
-  const year  = weekStart.getFullYear();
-  const month = weekStart.getMonth();
+  const year  = calendarViewDate.getFullYear();
+  const month = calendarViewDate.getMonth();
 
   const firstDay    = new Date(year, month, 1);
   const lastDay     = new Date(year, month + 1, 0);
@@ -282,7 +290,13 @@ function renderMiniCal(targetId) {
 
   let html = `
     <div class="mini-cal-header">
+      <button class="mini-cal-nav" type="button" data-cal-shift="-1" aria-label="Předchozí měsíc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <span class="mini-cal-month">${MONTH_NAMES[month]} ${year}</span>
+      <button class="mini-cal-nav" type="button" data-cal-shift="1" aria-label="Další měsíc">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
     <div class="mini-cal-grid" role="grid" aria-label="Kalendář ${MONTH_NAMES[month]} ${year}">
       <span class="mini-cal-wd">Po</span><span class="mini-cal-wd">Út</span>
@@ -311,9 +325,17 @@ function renderMiniCal(targetId) {
   html += '</div>';
   calEl.innerHTML = html;
 
+  calEl.querySelectorAll('.mini-cal-nav').forEach(btn => {
+    btn.addEventListener('click', () => {
+      calendarViewDate = new Date(year, month + Number(btn.dataset.calShift), 1);
+      renderMiniCal(targetId);
+    });
+  });
+
   calEl.querySelectorAll('.mini-cal-day:not(.is-empty)').forEach(el => {
     el.addEventListener('click', () => {
       weekStart = getMonday(new Date(+el.dataset.ts));
+      calendarViewDate = new Date(+el.dataset.ts);
       renderSchedule();
     });
     el.addEventListener('keydown', e => {
@@ -323,10 +345,14 @@ function renderMiniCal(targetId) {
 }
 
 document.getElementById('prev-week').addEventListener('click', () => {
-  weekStart.setDate(weekStart.getDate() - 7); renderSchedule();
+  weekStart.setDate(weekStart.getDate() - 7);
+  calendarViewDate = new Date(weekStart);
+  renderSchedule();
 });
 document.getElementById('next-week').addEventListener('click', () => {
-  weekStart.setDate(weekStart.getDate() + 7); renderSchedule();
+  weekStart.setDate(weekStart.getDate() + 7);
+  calendarViewDate = new Date(weekStart);
+  renderSchedule();
 });
 renderHeroWeek();
 renderSchedule();
