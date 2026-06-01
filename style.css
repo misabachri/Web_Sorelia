@@ -1629,6 +1629,9 @@ h3, h4 {
   .kon-map-wrap { height: 200px; }
   .form-row   { grid-template-columns: 1fr; }
 
+  .schedule-nav-row { width: 100%; }
+  .schedule-week-label { min-width: 0; flex: 1; }
+
   .schedule-day {
     padding: .875rem 1rem;
     font-size: 1.1rem;
