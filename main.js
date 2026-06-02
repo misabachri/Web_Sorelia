@@ -43,7 +43,7 @@ const SCHEDULE = {
   ],
   '2026-6-2': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření s RTG' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
@@ -59,7 +59,7 @@ const SCHEDULE = {
   ],
   '2026-6-9': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření s RTG' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
@@ -75,7 +75,7 @@ const SCHEDULE = {
   ],
   '2026-6-16': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření s RTG' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
@@ -88,7 +88,7 @@ const SCHEDULE = {
   ],
   '2026-6-23': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření s RTG' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
@@ -100,7 +100,7 @@ const SCHEDULE = {
     { time: '08:00–18:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
   '2026-6-30': [
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření s RTG' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
@@ -226,22 +226,12 @@ function renderSchedule() {
           const repeatCls = idx > 0 ? ' is-repeat' : '';
           const badge     = (idx === 0 && isToday) ? '<span class="today-badge">Dnes</span>' : '';
 
-          // Jméno lékaře zobrazíme jen jednou – při první změně lékaře v daném dni.
-          // Pokud stejný lékař pokrývá více po sobě jdoucích slotů, buňka se roztáhne
-          // přes všechny tyto řádky a jméno se vycentruje na střed.
+          // Jméno lékaře zobrazíme jen u první položky daného bloku.
+          // Skrytá buňka u dalších položek drží správné zarovnání grid sloupců.
           const sameAsPrev = idx > 0 && s.doctor === resolved[idx - 1].doctor;
-          let doctorHtml = '';
-          if (!sameAsPrev) {
-            let span = 1;
-            for (let j = idx + 1; j < resolved.length; j++) {
-              if (resolved[j].doctor === s.doctor) span++;
-              else break;
-            }
-            const spanStyle = span > 1
-              ? ` style="grid-row: span ${span}; align-self: center;"`
-              : '';
-            doctorHtml = `<span class="schedule-doctor"${spanStyle}>${s.doctor || '—'}</span>`;
-          }
+          const doctorHtml = sameAsPrev
+            ? '<span class="schedule-doctor is-repeat" aria-hidden="true"></span>'
+            : `<span class="schedule-doctor">${s.doctor || '—'}</span>`;
 
           html += `
             <span class="sch-day-date${repeatCls}">

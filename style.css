@@ -624,6 +624,7 @@ h3, h4 {
 }
 .schedule-day.is-today .schedule-doctor { color: rgba(255,255,255,.8); opacity: 1; }
 .schedule-day.is-closed .schedule-doctor { opacity: .45; }
+.schedule-doctor.is-repeat { visibility: hidden; }
 
 /* Typ ambulance */
 .schedule-type {
