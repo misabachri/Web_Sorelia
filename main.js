@@ -116,7 +116,7 @@ function getSlotsForDay(d) {
 
 function closedTextForDay(d) {
   if (d.getMonth() === 6) return 'Bude doplněno';
-  return d.getDay() === 5 ? 'Ordinační doba po domluvě' : 'Neordinuje';
+  return d.getDay() === 5 ? 'Ordinační doba po domluvě' : 'Neordinujeme';
 }
 
 const DAY_NAMES = ['Neděle', 'Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota'];
