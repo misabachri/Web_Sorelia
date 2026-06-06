@@ -1,0 +1,6 @@
+RewriteEngine On
+
+RewriteRule ^homepage/?$ / [R=301,L]
+RewriteRule ^homepage/(lide|pracovni-doba|vykony|opencast|kontakt)/?$ / [R=301,L]
+
+ErrorDocument 404 /404.html

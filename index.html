@@ -4,12 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sorelia – Ortopedická ambulance</title>
-  <meta name="description" content="Ortopedická ambulance Sorelia v Brně. Specializovaná péče o pohybový aparát, objednání online i telefonicky.">
-  <link rel="canonical" href="https://www.sorelia.cz/">
+  <meta name="description" content="Ortopedická ambulance Sorelia v Klášterci nad Ohří. Specializovaná péče o pohybový aparát, objednání online i telefonicky.">
+  <link rel="canonical" href="https://sorelia-ortopedie.cz/">
   <link rel="icon" type="image/svg+xml" href="sorelia_favicon.svg">
+  <meta name="theme-color" content="#A8201A">
+
   <meta property="og:title" content="Sorelia – Ortopedická ambulance">
-  <meta property="og:description" content="Specializovaná péče o pohybový aparát. Objednávejte online nebo telefonicky.">
+  <meta property="og:description" content="Specializovaná péče o pohybový aparát v Klášterci nad Ohří. Objednávejte online nebo telefonicky.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sorelia-ortopedie.cz/">
+  <meta property="og:site_name" content="Sorelia">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:image" content="https://sorelia-ortopedie.cz/sorelia-social-preview.jpg">
+  <meta property="og:image:secure_url" content="https://sorelia-ortopedie.cz/sorelia-social-preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ordinace ortopedické ambulance Sorelia v Klášterci nad Ohří">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sorelia – Ortopedická ambulance">
+  <meta name="twitter:description" content="Specializovaná péče o pohybový aparát v Klášterci nad Ohří. Objednávejte online nebo telefonicky.">
+  <meta name="twitter:image" content="https://sorelia-ortopedie.cz/sorelia-social-preview.jpg">
+  <meta name="twitter:image:alt" content="Ordinace ortopedické ambulance Sorelia v Klášterci nad Ohří">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -252,8 +270,10 @@
   <div class="container">
     <div class="sec-head">
       <p class="sec-label"><span class="sec-dot" aria-hidden="true"></span>Tým</p>
-      <h2 id="lek-h2">Naši lékaři</h2>
+      <h2 id="lek-h2">Náš tým</h2>
     </div>
+
+    <h3 class="team-sub-h">Lékaři</h3>
 
     <div class="team-grid">
 
@@ -269,7 +289,7 @@
         </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
-          <h3>MUDr. Jiří Šťovíček</h3>
+          <h4>MUDr. Jiří Šťovíček</h4>
         </div>
       </article>
 
@@ -285,7 +305,7 @@
         </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
-          <h3>MUDr. Tomáš Bachratý</h3>
+          <h4>MUDr. Tomáš Bachratý</h4>
         </div>
       </article>
 
@@ -301,7 +321,7 @@
         </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
-          <h3>prim. MUDr. Radoslav Vrabeľ</h3>
+          <h4>prim. MUDr. Radoslav Vrabeľ</h4>
         </div>
       </article>
 
@@ -317,7 +337,7 @@
         </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
-          <h3>MUDr. Antonín Pultar</h3>
+          <h4>MUDr. Antonín Pultar</h4>
         </div>
       </article>
 
@@ -333,7 +353,7 @@
         </div>
         <div class="team-info">
           <span class="team-badge">Ortoped</span>
-          <h3>MUDr. Josef Zima</h3>
+          <h4>MUDr. Josef Zima</h4>
         </div>
       </article>
 
@@ -512,13 +532,16 @@
         </div>
       </div>
 
-      <div class="kon-map-wrap">
-        <iframe
-          title="Mapa – Sorelia, Královehradecká 418, Klášterec nad Ohří"
-          src="https://maps.google.com/maps?q=Královehradecká+418,+431+51+Klášterec+nad+Ohří&output=embed"
-          width="100%" height="100%" style="border:0;" loading="lazy"
-          allowfullscreen referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+      <div
+        class="kon-map-wrap"
+        data-map-src="https://maps.google.com/maps?q=Královehradecká+418,+431+51+Klášterec+nad+Ohří&output=embed">
+        <div class="map-consent-placeholder">
+          <p>Mapa se načte po povolení externího obsahu.</p>
+          <div class="map-consent-actions">
+            <button type="button" class="btn btn-primary" data-map-allow>Povolit mapu</button>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kr%C3%A1lovehradeck%C3%A1%20418%2C%20431%2051%20Kl%C3%A1%C5%A1terec%20nad%20Oh%C5%99%C3%AD" target="_blank" rel="noopener" class="btn btn-outline">Otevřít mapu</a>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -546,6 +569,38 @@
 <a href="mailto:info@sorelia-ortopedie.cz" class="floating-cta" aria-label="Napsat e-mail">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
 </a>
+
+<button type="button" class="cookie-floating-btn" id="cookie-settings" aria-label="Nastavení cookies">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 13.5A8.5 8.5 0 1 1 10.5 3a3.2 3.2 0 0 0 4 4 3.2 3.2 0 0 0 4 4 3.2 3.2 0 0 0 2.5 2.5Z"/>
+    <path d="M8 9h.01M9 15h.01M14 13h.01"/>
+  </svg>
+</button>
+
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-copy">
+      <strong>Nastavení cookies</strong>
+      <p>Používáme nezbytné cookies pro fungování webu. Externí obsah, jako je Google mapa, načteme jen s vaším souhlasem.</p>
+      <div class="cookie-preferences" id="cookie-preferences" hidden>
+        <label class="cookie-check">
+          <input type="checkbox" checked disabled>
+          <span>Nezbytné cookies</span>
+        </label>
+        <label class="cookie-check">
+          <input type="checkbox" id="cookie-maps">
+          <span>Externí obsah a mapy</span>
+        </label>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-primary" id="cookie-accept">Přijmout</button>
+      <button type="button" class="btn btn-outline" id="cookie-reject">Odmítnout</button>
+      <button type="button" class="btn btn-outline" id="cookie-customize" aria-expanded="false" aria-controls="cookie-preferences">Upravit předvolby</button>
+      <button type="button" class="btn btn-primary" id="cookie-save" hidden>Uložit předvolby</button>
+    </div>
+  </div>
+</div>
 
 <script src="main.js"></script>
 </body>

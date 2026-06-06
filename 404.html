@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stránka nenalezena – Sorelia</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="sorelia_favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .not-found {
+      min-height: calc(100vh - 86px);
+      display: grid;
+      place-items: center;
+      padding: calc(var(--gap) + 4rem) 0 var(--gap);
+      text-align: center;
+    }
+
+    .not-found-inner {
+      width: min(100%, 640px);
+      margin: 0 auto;
+    }
+
+    .not-found h1 {
+      font-family: var(--fh);
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.08;
+      color: var(--black);
+      margin-bottom: 2rem;
+    }
+
+    .not-found-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+  </style>
+</head>
+<body class="page-404">
+
+<header class="site-header" id="site-header">
+  <div class="nav-wrap">
+    <nav class="nav-pill" aria-label="Hlavní navigace">
+      <a href="/" class="nav-logo" aria-label="Sorelia – domů">
+        <img src="sorelia_logo.svg" alt="Sorelia" class="nav-logo-img">
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="/#ordinacni-doba">Ordinační doba</a></li>
+        <li><a href="/#lekari">Tým</a></li>
+        <li><a href="/#opencast">OpenCast</a></li>
+        <li><a href="/#faq">Časté dotazy</a></li>
+        <li><a href="/#kontakt">Kontakt</a></li>
+        <li class="nav-cta-mob"><a href="/#objednani" class="btn btn-primary">Objednat se</a></li>
+      </ul>
+      <a href="/#objednani" class="btn btn-primary nav-cta-desk">Objednat se</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="not-found" aria-labelledby="not-found-h1">
+    <div class="container">
+      <div class="not-found-inner">
+        <h1 id="not-found-h1">Tato stránka byla přesunuta nebo neexistuje.</h1>
+        <div class="not-found-actions">
+          <a href="/" class="btn btn-primary">Přejít na hlavní stránku</a>
+          <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Napsat e-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mini-footer" aria-label="Právní a kontaktní údaje">
+  <div class="container mini-footer-wrap">
+    <p class="mini-footer-contact">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mini-footer-icon"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 012 2h3a2 2 0 012 1.72c.12 1 .36 1.97.72 2.9a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.18-1.18a2 2 0 012.11-.45c.93.36 1.9.6 2.9.72A2 2 0 0122 16.92z"/></svg>
+      <a href="tel:+420725148051">725&nbsp;148&nbsp;051</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mini-footer-icon"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      <a href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a>
+    </p>
+    <p class="mini-footer-meta">
+      Sorelia s.r.o. · IČ: 053&nbsp;23&nbsp;592 · DIČ:&nbsp;CZ05323592 · IČZ:&nbsp;52773000 · IČP:&nbsp;52773001 · Webdesign: <a href="https://michaelabachri.cz" target="_blank" rel="noopener">michaelabachri.cz</a>
+    </p>
+  </div>
+</footer>
+
+<button type="button" class="cookie-floating-btn" id="cookie-settings" aria-label="Nastavení cookies">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 13.5A8.5 8.5 0 1 1 10.5 3a3.2 3.2 0 0 0 4 4 3.2 3.2 0 0 0 4 4 3.2 3.2 0 0 0 2.5 2.5Z"/>
+    <path d="M8 9h.01M9 15h.01M14 13h.01"/>
+  </svg>
+</button>
+
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-copy">
+      <strong>Nastavení cookies</strong>
+      <p>Používáme nezbytné cookies pro fungování webu. Externí obsah, jako je Google mapa, načteme jen s vaším souhlasem.</p>
+      <div class="cookie-preferences" id="cookie-preferences" hidden>
+        <label class="cookie-check">
+          <input type="checkbox" checked disabled>
+          <span>Nezbytné cookies</span>
+        </label>
+        <label class="cookie-check">
+          <input type="checkbox" id="cookie-maps">
+          <span>Externí obsah a mapy</span>
+        </label>
+      </div>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-primary" id="cookie-accept">Přijmout</button>
+      <button type="button" class="btn btn-outline" id="cookie-reject">Odmítnout</button>
+      <button type="button" class="btn btn-outline" id="cookie-customize" aria-expanded="false" aria-controls="cookie-preferences">Upravit předvolby</button>
+      <button type="button" class="btn btn-primary" id="cookie-save" hidden>Uložit předvolby</button>
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

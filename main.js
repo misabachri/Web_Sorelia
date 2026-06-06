@@ -5,9 +5,13 @@
 
 // ── Sticky header ──────────────────────────────────────────
 const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+const shouldShrinkHeader = header && !document.body.classList.contains('page-404');
+
+if (shouldShrinkHeader) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
 
 // ── Mobile hamburger ───────────────────────────────────────
 const burger   = document.getElementById('nav-burger');
@@ -31,6 +35,159 @@ document.addEventListener('click', e => {
     burger.setAttribute('aria-expanded', 'false');
   }
 });
+
+// ── Cookies + externí obsah ───────────────────────────────
+const CONSENT_KEY = 'soreliaCookieConsent';
+
+function readConsent() {
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveConsent(consent) {
+  try {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      necessary: true,
+      maps: Boolean(consent.maps),
+      savedAt: new Date().toISOString(),
+    }));
+  } catch (error) {
+    // If storage is unavailable, keep the current page behavior only.
+  }
+}
+
+function loadGoogleMaps() {
+  document.querySelectorAll('[data-map-src]').forEach(mapWrap => {
+    if (mapWrap.querySelector('iframe')) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.title = 'Mapa – Sorelia, Královehradecká 418, Klášterec nad Ohří';
+    iframe.src = mapWrap.dataset.mapSrc;
+    iframe.width = '100%';
+    iframe.height = '100%';
+    iframe.style.border = '0';
+    iframe.loading = 'lazy';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+
+    mapWrap.innerHTML = '';
+    mapWrap.appendChild(iframe);
+  });
+}
+
+function unloadGoogleMaps() {
+  document.querySelectorAll('[data-map-src]').forEach(mapWrap => {
+    if (!mapWrap.querySelector('iframe')) return;
+
+    mapWrap.innerHTML = `
+      <div class="map-consent-placeholder">
+        <p>Mapa se načte po povolení externího obsahu.</p>
+        <div class="map-consent-actions">
+          <button type="button" class="btn btn-primary" data-map-allow>Povolit mapu</button>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kr%C3%A1lovehradeck%C3%A1%20418%2C%20431%2051%20Kl%C3%A1%C5%A1terec%20nad%20Oh%C5%99%C3%AD" target="_blank" rel="noopener" class="btn btn-outline">Otevřít mapu</a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function applyConsent(consent) {
+  if (consent && consent.maps) loadGoogleMaps();
+  else unloadGoogleMaps();
+}
+
+document.addEventListener('click', e => {
+  const allowMapBtn = e.target.closest('[data-map-allow]');
+  if (!allowMapBtn) return;
+
+  const consent = { maps: true };
+  saveConsent(consent);
+  applyConsent(consent);
+
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.hidden = true;
+});
+
+function initCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  const settingsBtn = document.getElementById('cookie-settings');
+  if (!banner) {
+    applyConsent(readConsent());
+    return;
+  }
+
+  const preferences = document.getElementById('cookie-preferences');
+  const mapsCheckbox = document.getElementById('cookie-maps');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+  const customizeBtn = document.getElementById('cookie-customize');
+  const saveBtn = document.getElementById('cookie-save');
+  const storedConsent = readConsent();
+
+  function setPreferencesOpen(open) {
+    if (preferences) preferences.hidden = !open;
+    if (saveBtn) saveBtn.hidden = !open;
+    customizeBtn?.setAttribute('aria-expanded', String(open));
+  }
+
+  function syncCheckbox() {
+    if (mapsCheckbox) mapsCheckbox.checked = Boolean(readConsent()?.maps);
+  }
+
+  function closeBanner() {
+    banner.hidden = true;
+    setPreferencesOpen(false);
+  }
+
+  function openBannerWithPreferences() {
+    syncCheckbox();
+    banner.hidden = false;
+    setPreferencesOpen(true);
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    const consent = { maps: true };
+    saveConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  rejectBtn?.addEventListener('click', () => {
+    const consent = { maps: false };
+    saveConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  customizeBtn?.addEventListener('click', () => {
+    const isOpen = preferences && !preferences.hidden;
+    syncCheckbox();
+    setPreferencesOpen(!isOpen);
+  });
+
+  saveBtn?.addEventListener('click', () => {
+    const consent = { maps: Boolean(mapsCheckbox?.checked) };
+    saveConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  settingsBtn?.addEventListener('click', openBannerWithPreferences);
+
+  if (storedConsent) {
+    applyConsent(storedConsent);
+    return;
+  }
+
+  banner.hidden = false;
+  setPreferencesOpen(false);
+}
+
+initCookieBanner();
 
 // ── Ordinační doba – data ──────────────────────────────────
 // Klíč: 'YYYY-M-D' (bez nulového prefixu)
@@ -334,16 +491,24 @@ function renderMiniCal(targetId) {
   });
 }
 
-document.getElementById('prev-week').addEventListener('click', () => {
-  weekStart.setDate(weekStart.getDate() - 7);
-  calendarViewDate = new Date(weekStart);
-  renderSchedule();
-});
-document.getElementById('next-week').addEventListener('click', () => {
-  weekStart.setDate(weekStart.getDate() + 7);
-  calendarViewDate = new Date(weekStart);
-  renderSchedule();
-});
+const prevWeekBtn = document.getElementById('prev-week');
+const nextWeekBtn = document.getElementById('next-week');
+
+if (prevWeekBtn) {
+  prevWeekBtn.addEventListener('click', () => {
+    weekStart.setDate(weekStart.getDate() - 7);
+    calendarViewDate = new Date(weekStart);
+    renderSchedule();
+  });
+}
+
+if (nextWeekBtn) {
+  nextWeekBtn.addEventListener('click', () => {
+    weekStart.setDate(weekStart.getDate() + 7);
+    calendarViewDate = new Date(weekStart);
+    renderSchedule();
+  });
+}
 renderHeroWeek();
 renderSchedule();
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sorelia.cz/sitemap.xml
+Sitemap: https://sorelia-ortopedie.cz/sitemap.xml
