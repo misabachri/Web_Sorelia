@@ -366,7 +366,7 @@ function renderSchedule() {
       if (!slots && closedTextForDay(d) === 'Bude doplněno') row.classList.add('is-pending-schedule');
 
       // Každý slot přispívá 4 přímými dětmi do CSS gridu:
-      // [sch-day-date] [schedule-doctor] [schedule-type] [schedule-hours]
+      // [sch-day-date] [schedule-doctor] [schedule-slot-meta > type + hours]
       let html = '';
       if (slots) {
         // null znamená "stejný lékař jako předchozí slot" – vyřeší se dopředu
@@ -397,8 +397,10 @@ function renderSchedule() {
               ${badge}
             </span>
             ${doctorHtml}
-            <span class="schedule-type">${s.type}</span>
-            <span class="schedule-hours">${s.time}</span>
+            <span class="schedule-slot-meta">
+              <span class="schedule-type">${s.type}</span>
+              <span class="schedule-hours">${s.time}</span>
+            </span>
           `;
         });
       } else {
@@ -408,8 +410,10 @@ function renderSchedule() {
             <span class="sch-ddate">${fmt(d)}</span>
           </span>
           <span class="schedule-doctor"></span>
-          <span class="schedule-type"></span>
-          <span class="schedule-hours">${closedTextForDay(d)}</span>
+          <span class="schedule-slot-meta">
+            <span class="schedule-type"></span>
+            <span class="schedule-hours">${closedTextForDay(d)}</span>
+          </span>
         `;
       }
 

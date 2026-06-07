@@ -609,6 +609,11 @@ h3, h4 {
 .schedule-hours {
   font-weight: 500;
 }
+
+.schedule-slot-meta {
+  display: contents;
+}
+
 .schedule-day.is-friday-closed .schedule-hours,
 .schedule-day.is-pending-schedule .schedule-hours {
   grid-column: 3 / 5;
@@ -1777,6 +1782,13 @@ h3, h4 {
     font-size: 1.1rem;
     grid-template-columns: 1fr auto;
     row-gap: .2rem;
+  }
+  .schedule-slot-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-column: 1 / -1;
+    column-gap: 1rem;
+    align-items: baseline;
   }
   .schedule-hours {
     grid-column: 2;
