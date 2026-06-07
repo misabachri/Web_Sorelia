@@ -552,13 +552,9 @@ h3, h4 {
 
 .odb-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr var(--schedule-nav-w);
+  gap: 3rem;
   align-items: start;
-}
-
-.odb-right {
-  order: -1;
 }
 
 /* Schedule rows */
@@ -568,19 +564,22 @@ h3, h4 {
   overflow: hidden;
 }
 
-/* 4 sloupce: den+datum | lékař | typ | čas */
 .schedule-day {
-  display: grid;
-  grid-template-columns: 190px 1fr 1fr 120px;
-  column-gap: 1rem;
-  row-gap: .45rem;
-  align-items: baseline;
-  padding: 1rem 1.5rem;
+  padding: .65rem 1.5rem;
   border-bottom: 1px solid rgba(64,67,78,.12);
   background: var(--white);
-  font-size: 1.15rem;
 }
 .schedule-day:last-child { border-bottom: none; }
+
+/* 4 sloupce: den+datum | lékař | čas | typ */
+.schedule-slot {
+  display: grid;
+  grid-template-columns: 190px 1fr 120px 1fr;
+  column-gap: 1rem;
+  align-items: baseline;
+  padding: .25rem 0;
+  font-size: 1.15rem;
+}
 
 .schedule-day.is-today {
   background: var(--red);
@@ -607,6 +606,7 @@ h3, h4 {
 
 /* Čas */
 .schedule-hours {
+  grid-column: 3;
   font-weight: 500;
 }
 
@@ -638,6 +638,7 @@ h3, h4 {
 
 /* Typ ambulance */
 .schedule-type {
+  grid-column: 4;
   font-size: 1.1rem;
   color: var(--charcoal);
   opacity: .7;
@@ -1741,6 +1742,7 @@ h3, h4 {
   .akt-grid { grid-template-columns: 1fr 1fr; }
 
   .odb-grid { grid-template-columns: 1fr; }
+  .odb-right { order: -1; }
   .obd-grid { grid-template-columns: 1fr; }
   .opencast-grid { grid-template-columns: 1fr; }
   .opencast-content {
@@ -1777,21 +1779,22 @@ h3, h4 {
   .schedule-nav-row { width: 100%; }
   .schedule-week-label { min-width: 0; flex: 1; }
 
-  .schedule-day {
-    padding: .875rem 1rem;
+  .schedule-day { padding: 0; }
+  .schedule-slot {
+    padding: .65rem 1rem;
     font-size: 1.1rem;
     grid-template-columns: 1fr auto;
-    row-gap: .2rem;
+    row-gap: .1rem;
   }
   .schedule-slot-meta {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: flex;
+    justify-content: space-between;
     grid-column: 1 / -1;
     column-gap: 1rem;
     align-items: baseline;
   }
   .schedule-hours {
-    grid-column: 2;
+    flex: 0 0 auto;
     justify-self: end;
     white-space: nowrap;
   }
@@ -1800,7 +1803,7 @@ h3, h4 {
   .sch-day-date   { grid-column: 1; grid-row: 1; }
   .schedule-doctor { grid-column: 1 / -1; font-size: 1.05rem; }
   .schedule-doctor.is-repeat { display: none; }
-  .schedule-type   { grid-column: 1; font-size: 1.05rem; }
+  .schedule-type   { flex: 1 1 auto; min-width: 0; font-size: 1.05rem; }
   .sch-day-date.is-repeat { display: none; }
 
   .mini-footer-wrap {
