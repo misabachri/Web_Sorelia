@@ -545,6 +545,11 @@ if (form && successMessage && errorMessage) {
 
     const submitButton = form.querySelector('button[type="submit"]');
     const formData = new FormData(form);
+    const selectedDoctor = formData.get('lekar');
+
+    if (selectedDoctor) {
+      formData.set('_subject', `Objednání Sorelia: ${selectedDoctor}`);
+    }
 
     if (submitButton) {
       submitButton.disabled = true;
