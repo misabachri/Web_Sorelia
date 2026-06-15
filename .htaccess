@@ -1,5 +1,10 @@
 RewriteEngine On
 
+RewriteCond %{HTTP_HOST} ^www\.sorelia-ortopedie\.cz$ [NC,OR]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://sorelia-ortopedie.cz/$1 [R=301,L]
+
+RewriteRule ^index\.html$ / [R=301,L]
 RewriteRule ^homepage/?$ / [R=301,L]
 RewriteRule ^homepage/(lide|pracovni-doba|vykony|opencast|kontakt)/?$ / [R=301,L]
 
