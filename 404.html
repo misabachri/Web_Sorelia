@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     .not-found {
       min-height: calc(100vh - 86px);
@@ -55,9 +55,17 @@
         <li><a href="/#opencast">OpenCast</a></li>
         <li><a href="/#faq">Časté dotazy</a></li>
         <li><a href="/#kontakt">Kontakt</a></li>
-        <li class="nav-cta-mob"><a href="/#objednani" class="btn btn-primary">Objednat se</a></li>
+        <li class="nav-cta-mob">
+          <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Objednat se
+          </a>
+        </li>
       </ul>
-      <a href="/#objednani" class="btn btn-primary nav-cta-desk">Objednat se</a>
+      <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-primary nav-cta-desk">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        Objednat se
+      </a>
       <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>

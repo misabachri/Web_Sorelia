@@ -341,12 +341,14 @@ function renderHeroWeek() {
 
 function renderSchedule() {
   const daysEl  = document.getElementById('schedule-days');
-  const labelEl = document.getElementById('week-label');
+  const labelEls = document.querySelectorAll('.schedule-week-label');
 
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 4);
 
-  if (labelEl) labelEl.textContent = `${fmt(weekStart)} – ${fmt(weekEnd)} ${weekEnd.getFullYear()}`;
+  labelEls.forEach(labelEl => {
+    labelEl.textContent = `${fmt(weekStart)} – ${fmt(weekEnd)} ${weekEnd.getFullYear()}`;
+  });
   if (daysEl) daysEl.innerHTML = '';
 
   for (let i = 0; i < 5; i++) {
@@ -499,24 +501,13 @@ function renderMiniCal(targetId) {
   });
 }
 
-const prevWeekBtn = document.getElementById('prev-week');
-const nextWeekBtn = document.getElementById('next-week');
-
-if (prevWeekBtn) {
-  prevWeekBtn.addEventListener('click', () => {
-    weekStart.setDate(weekStart.getDate() - 7);
+document.querySelectorAll('[data-week-shift]').forEach(button => {
+  button.addEventListener('click', () => {
+    weekStart.setDate(weekStart.getDate() + Number(button.dataset.weekShift));
     calendarViewDate = new Date(weekStart);
     renderSchedule();
   });
-}
-
-if (nextWeekBtn) {
-  nextWeekBtn.addEventListener('click', () => {
-    weekStart.setDate(weekStart.getDate() + 7);
-    calendarViewDate = new Date(weekStart);
-    renderSchedule();
-  });
-}
+});
 renderHeroWeek();
 renderSchedule();
 
@@ -533,52 +524,3 @@ document.addEventListener('click', e => {
   btn.setAttribute('aria-expanded', String(!expanded));
   answer.hidden = expanded;
 });
-
-// ── Formspree form ─────────────────────────────────────────
-const form = document.getElementById('sorelia-form');
-const successMessage = document.getElementById('form-success');
-const errorMessage = document.getElementById('form-error');
-
-if (form && successMessage && errorMessage) {
-  form.addEventListener('submit', async event => {
-    event.preventDefault();
-
-    const submitButton = form.querySelector('button[type="submit"]');
-    const formData = new FormData(form);
-    const selectedDoctor = formData.get('lekar');
-
-    if (selectedDoctor) {
-      formData.set('_subject', `Objednání Sorelia: ${selectedDoctor}`);
-    }
-
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Odesílám...';
-    }
-
-    try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        form.style.display = 'none';
-        successMessage.style.display = 'flex';
-        errorMessage.style.display = 'none';
-      } else {
-        errorMessage.style.display = 'block';
-      }
-    } catch (error) {
-      errorMessage.style.display = 'block';
-    } finally {
-      if (submitButton && form.style.display !== 'none') {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Požádat o termín';
-      }
-    }
-  });
-}

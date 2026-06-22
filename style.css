@@ -439,7 +439,7 @@ h3, h4 {
 
 .akt-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -492,6 +492,18 @@ h3, h4 {
   flex: 1;
 }
 
+.akt-card p a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(168, 32, 26, .35);
+  text-underline-offset: 3px;
+}
+
+.akt-card p a:hover {
+  text-decoration-color: var(--red);
+}
+
 .akt-link {
   display: inline-flex;
   align-items: center;
@@ -527,6 +539,10 @@ h3, h4 {
   max-width: 100%;
 }
 
+.schedule-nav-row--mobile {
+  display: none;
+}
+
 .schedule-week-label {
   font-family: var(--fh);
   font-size: 1.05rem;
@@ -555,6 +571,38 @@ h3, h4 {
   grid-template-columns: 1fr var(--schedule-nav-w);
   gap: 3rem;
   align-items: start;
+}
+
+.schedule-contact-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  width: min(100%, var(--schedule-nav-w));
+  margin: 1rem auto 0;
+  padding: 1rem 1.25rem;
+  border-radius: var(--r);
+  background: var(--red-soft);
+  color: var(--charcoal);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.schedule-contact-note svg {
+  flex: 0 0 auto;
+  color: var(--red);
+  margin-top: .15rem;
+}
+
+.schedule-contact-note a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(168, 32, 26, .35);
+  text-underline-offset: 3px;
+}
+
+.schedule-contact-note a:hover {
+  text-decoration-color: var(--red);
 }
 
 /* Schedule rows */
@@ -1680,8 +1728,8 @@ h3, h4 {
   transition: background .15s, transform .15s;
 }
 .floating-cta:hover {
-  background: var(--black);
-  border-color: var(--black);
+  background: #8A1A15;
+  border-color: #8A1A15;
   transform: translateY(-2px);
 }
 
@@ -1741,8 +1789,15 @@ h3, h4 {
 
   .akt-grid { grid-template-columns: 1fr 1fr; }
 
-  .odb-grid { grid-template-columns: 1fr; }
-  .odb-right { order: -1; }
+  .odb-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .schedule-nav-row--desktop { display: none; }
+  .schedule-nav-row--mobile {
+    display: flex;
+    width: 100%;
+  }
   .obd-grid { grid-template-columns: 1fr; }
   .opencast-grid { grid-template-columns: 1fr; }
   .opencast-content {
