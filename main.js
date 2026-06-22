@@ -3,6 +3,17 @@
    ============================================================ */
 'use strict';
 
+// ── Přesměrování staré adresy objednávkového formuláře ───
+function redirectLegacyOrderHash() {
+  if (window.location.hash.toLowerCase() !== '#objednani') return;
+
+  history.replaceState(null, document.title, `${window.location.pathname}${window.location.search}`);
+  window.scrollTo(0, 0);
+}
+
+redirectLegacyOrderHash();
+window.addEventListener('hashchange', redirectLegacyOrderHash);
+
 // ── Sticky header ──────────────────────────────────────────
 const header = document.getElementById('site-header');
 const shouldShrinkHeader = header && !document.body.classList.contains('page-404');
