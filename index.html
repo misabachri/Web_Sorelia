@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (window.location.hash.toLowerCase() === '#objednani') {
+      window.location.replace(`${window.location.origin}/`);
+    }
+  </script>
   <title>Sorelia · Ortopedická ambulance</title>
   <meta name="description" content="Ortopedická ambulance Sorelia v Klášterci nad Ohří. Specializovaná péče o pohybový aparát, objednání e-mailem nebo telefonicky.">
   <link rel="canonical" href="https://sorelia-ortopedie.cz/">
