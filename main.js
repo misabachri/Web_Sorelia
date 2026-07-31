@@ -304,6 +304,58 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',     type: 'Běžná ambulance' },
     { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar', type: 'Běžná ambulance' },
   ],
+  '2026-8-3': [
+    { time: '12:00–17:00', doctor: 'MUDr. Tomáš Bachratý', type: 'Běžná ambulance' },
+  ],
+  '2026-8-4': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-8-5': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',     type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar', type: 'Běžná ambulance' },
+  ],
+  '2026-8-6': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček', type: 'Běžná ambulance' },
+  ],
+  '2026-8-10': [
+    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý', type: 'Běžná ambulance' },
+  ],
+  '2026-8-11': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček', type: 'Běžná ambulance' },
+  ],
+  '2026-8-18': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-8-19': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima', type: 'Běžná ambulance' },
+  ],
+  '2026-8-20': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček', type: 'Běžná ambulance' },
+  ],
+  '2026-8-24': [
+    { time: '12:00–17:00', doctor: 'MUDr. Tomáš Bachratý', type: 'Běžná ambulance' },
+  ],
+  '2026-8-25': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-8-26': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',     type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar', type: 'Běžná ambulance' },
+  ],
+  '2026-8-27': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček', type: 'Běžná ambulance' },
+  ],
+  '2026-8-31': [
+    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý', type: 'Běžná ambulance' },
+  ],
 };
 
 function scheduleKey(d) {
@@ -314,8 +366,19 @@ function getSlotsForDay(d) {
   return SCHEDULE[scheduleKey(d)] || null;
 }
 
+const LAST_SCHEDULE_DATE = Object.keys(SCHEDULE).reduce((latest, key) => {
+  const [year, month, day] = key.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
+  return date > latest ? date : latest;
+}, new Date(0));
+LAST_SCHEDULE_DATE.setHours(0, 0, 0, 0);
+
+function isAfterLastScheduleDate(d) {
+  return d > LAST_SCHEDULE_DATE;
+}
+
 function closedTextForDay(d) {
-  if (d.getFullYear() === 2026 && d.getMonth() === 7) return 'Bude doplněno';
+  if (isAfterLastScheduleDate(d)) return 'Bude doplněno';
   return d.getDay() === 5 ? 'Ordinační doba po domluvě' : 'Neordinujeme';
 }
 
@@ -408,7 +471,7 @@ function renderSchedule() {
       if (isToday) row.classList.add('is-today');
       if (!slots)  row.classList.add('is-closed');
       if (!slots && dow === 5) row.classList.add('is-friday-closed');
-      if (!slots && closedTextForDay(d) === 'Bude doplněno') row.classList.add('is-pending-schedule');
+      if (!slots && isAfterLastScheduleDate(d)) row.classList.add('is-pending-schedule');
 
       // Každý slot má vlastní řádek, aby desktop držel tabulkové sloupce
       // a mobil mohl zobrazit typ služby s časem v jedné řádce.
