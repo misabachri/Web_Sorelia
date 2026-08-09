@@ -327,9 +327,9 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček', type: 'Běžná ambulance' },
   ],
   '2026-8-18': [
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
-    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+    { time: '15:00–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
   ],
   '2026-8-19': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima', type: 'Běžná ambulance' },
@@ -342,9 +342,9 @@ const SCHEDULE = {
   ],
   '2026-8-25': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
-    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Vyšetření dětí s RTG' },
-    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+    { time: '15:00–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
   ],
   '2026-8-26': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',     type: 'Běžná ambulance' },
