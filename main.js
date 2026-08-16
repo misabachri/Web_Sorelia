@@ -376,7 +376,7 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Běžná ambulance' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
   '2026-9-9': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
@@ -392,7 +392,7 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Běžná ambulance' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
   '2026-9-16': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
@@ -408,7 +408,7 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Běžná ambulance' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
   '2026-9-23': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
@@ -421,7 +421,7 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
     { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
-    { time: '17:00–19:00', doctor: null,                    type: 'Běžná ambulance' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
   '2026-9-30': [
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
