@@ -427,6 +427,64 @@ const SCHEDULE = {
     { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
     { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
   ],
+  '2026-10-1': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-10-5': [
+    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-6': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-10-7': [
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-8': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-10-12': [
+    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-13': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-10-14': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-15': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-10-20': [
+    { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-10-21': [
+    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
+    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-22': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
+  '2026-10-26': [
+    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+  ],
+  '2026-10-27': [
+    { time: '15:30–16:00', doctor: 'MUDr. Radoslav Vrabeľ', type: 'Běžná ambulance' },
+    { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
+    { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
+  ],
+  '2026-10-29': [
+    { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
+  ],
 };
 
 function scheduleKey(d) {
