@@ -524,6 +524,26 @@ h3, h4 {
   background: rgba(168, 32, 26, 0.045);
 }
 
+/* 2 + 2 layout: 1 urgent + 3 secondary cards, all span 3 (secondary keep their look),
+   both rows equally tall so the block reads as one 2×2 grid */
+.akt-grid--2x2 {
+  grid-auto-rows: 1fr;
+}
+
+.akt-grid--2x2 .akt-card--secondary {
+  grid-column: span 3;
+}
+
+/* same inner spacing and icon size as secondary cards, so content lines up */
+.akt-grid--2x2 .akt-card {
+  padding: 1.5rem;
+}
+
+.akt-grid--2x2 .akt-icon {
+  width: 40px;
+  height: 40px;
+}
+
 .akt-card--secondary:hover {
   background: rgba(168, 32, 26, 0.09);
 }
@@ -1850,7 +1870,8 @@ h3, h4 {
 
   .akt-grid { grid-template-columns: 1fr 1fr; }
   .akt-card,
-  .akt-card--secondary { grid-column: span 1; }
+  .akt-card--secondary,
+  .akt-grid--2x2 .akt-card--secondary { grid-column: span 1; }
 
   .odb-grid {
     grid-template-columns: 1fr;
@@ -1882,6 +1903,7 @@ h3, h4 {
   .hero-actions .btn { width: min(100%, 20rem); max-width: 100%; }
 
   .akt-grid { grid-template-columns: 1fr; }
+  .akt-grid--2x2 { grid-auto-rows: auto; }
   .team-grid { grid-template-columns: 1fr; }
   .team-badge,
   .staff-badge {

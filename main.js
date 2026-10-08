@@ -454,10 +454,6 @@ const SCHEDULE = {
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2026-10-14': [
-    { time: '09:00–13:30', doctor: 'MUDr. Josef Zima',      type: 'Běžná ambulance' },
-    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
-  ],
   '2026-10-15': [
     { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
   ],
