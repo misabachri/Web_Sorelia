@@ -482,7 +482,7 @@ const SCHEDULE = {
     { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
   ],
   '2026-11-2': [
-    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+    { time: '08:00–15:30', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
   '2026-11-3': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
@@ -498,7 +498,7 @@ const SCHEDULE = {
     { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
   ],
   '2026-11-9': [
-    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+    { time: '08:00–15:30', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
   '2026-11-10': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
@@ -521,7 +521,7 @@ const SCHEDULE = {
     { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
   ],
   '2026-11-23': [
-    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+    { time: '08:00–15:30', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
   '2026-11-24': [
     { time: '09:00–13:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
@@ -537,7 +537,7 @@ const SCHEDULE = {
     { time: '08:00–12:30', doctor: 'MUDr. Jiří Šťovíček',   type: 'Běžná ambulance' },
   ],
   '2026-11-30': [
-    { time: '08:00–17:00', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
+    { time: '08:00–15:30', doctor: 'MUDr. Tomáš Bachratý',  type: 'Běžná ambulance' },
   ],
 };
 
