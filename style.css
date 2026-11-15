@@ -625,6 +625,8 @@ h3, h4 {
   display: none;
 }
 
+.odb-head .schedule-nav-row--desktop { margin-left: auto; }
+
 .schedule-week-label {
   font-family: var(--fh);
   font-size: 1.05rem;
@@ -1882,6 +1884,7 @@ h3, h4 {
   .schedule-nav-row--mobile {
     display: flex;
     width: 100%;
+    margin-bottom: 1rem;
   }
   .obd-grid { grid-template-columns: 1fr; }
   .opencast-grid { grid-template-columns: 1fr; }

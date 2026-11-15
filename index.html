@@ -168,7 +168,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261015">
+  <link rel="stylesheet" href="style.css?v=20261118">
 </head>
 <body>
 
@@ -301,36 +301,35 @@
 ══════════════════════════════════════════ -->
 <section class="section section--grey odb" id="ordinacni-doba" aria-labelledby="odb-h2">
   <div class="container">
-    <div class="odb-head">
-      <div>
-        <p class="sec-label"><span class="sec-dot" aria-hidden="true"></span>Ordinační hodiny</p>
-        <h2 id="odb-h2">Jak ordinujeme tento týden</h2>
-      </div>
-      <div class="schedule-nav-row schedule-nav-row--desktop">
-        <button class="sched-btn" id="prev-week" data-week-shift="-7" aria-label="Předchozí týden">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <span class="schedule-week-label" id="week-label"></span>
-        <button class="sched-btn" id="next-week" data-week-shift="7" aria-label="Další týden">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-
     <div class="odb-grid">
       <div class="odb-left">
+        <div class="odb-head">
+          <div>
+            <p class="sec-label"><span class="sec-dot" aria-hidden="true"></span>Ordinační hodiny</p>
+            <h2 id="odb-h2">Jak ordinujeme tento týden</h2>
+          </div>
+          <div class="schedule-nav-row schedule-nav-row--desktop">
+            <button class="sched-btn" id="prev-week" data-week-shift="-7" aria-label="Předchozí týden">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="schedule-week-label" id="week-label"></span>
+            <button class="sched-btn" id="next-week" data-week-shift="7" aria-label="Další týden">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="schedule-nav-row schedule-nav-row--mobile">
+          <button class="sched-btn" type="button" data-week-shift="-7" aria-label="Předchozí týden">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="schedule-week-label"></span>
+          <button class="sched-btn" type="button" data-week-shift="7" aria-label="Další týden">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
         <div class="schedule-days" id="schedule-days" role="list" aria-label="Ordinační doba vybraného týdne">
           <!-- JS -->
         </div>
-      </div>
-      <div class="schedule-nav-row schedule-nav-row--mobile">
-        <button class="sched-btn" type="button" data-week-shift="-7" aria-label="Předchozí týden">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <span class="schedule-week-label"></span>
-        <button class="sched-btn" type="button" data-week-shift="7" aria-label="Další týden">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
       </div>
       <div class="odb-right">
         <div class="schedule-mini-cal" id="mini-calendar" aria-label="Miniaturní kalendář"></div>
