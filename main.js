@@ -43,7 +43,7 @@ function initBookingDialog() {
 
   const choices = document.getElementById('booking-doctors');
   const emailLink = document.getElementById('booking-email');
-  const noPreference = choices.lastElementChild;
+  const noPreference = choices.querySelector('.booking-no-preference');
   let returnFocus;
 
   document.querySelectorAll('.team-card h4').forEach(heading => {
@@ -243,7 +243,7 @@ initCookieBanner();
 
 // ── Ordinační doba – data ──────────────────────────────────
 // Klíč: 'YYYY-M-D' (bez nulového prefixu)
-// Každý den může mít více slotů: { time, doctor, type }
+// Každý den může mít více slotů: { time, doctor, type }. null = potvrzené uzavření.
 // doctor: null = neuveden (UZV, kontroly apod.)
 const SCHEDULE = {
   '2026-6-1': [
@@ -637,9 +637,7 @@ const SCHEDULE = {
     { time: '16:00–17:00', doctor: null,                    type: 'UZV vyšetření' },
     { time: '17:00–19:00', doctor: null,                    type: 'Kontroly' },
   ],
-  '2026-12-30': [
-    { time: '15:00–19:00', doctor: 'MUDr. Antonín Pultar',  type: 'Běžná ambulance' },
-  ],
+  '2026-12-30': null,
 };
 
 function scheduleKey(d) {

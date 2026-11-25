@@ -1891,6 +1891,10 @@ html:has(.booking-dialog[open]) body { overflow-x: clip; }
 
 .booking-no-preference a {
   margin-top: .25rem;
+}
+
+.booking-no-preference a,
+.booking-service a {
   border-color: var(--grey);
   background: transparent;
 }
