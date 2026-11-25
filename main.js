@@ -23,7 +23,7 @@ burger.addEventListener('click', () => {
 });
 
 navLinks.addEventListener('click', e => {
-  if (e.target.tagName === 'A') {
+  if (e.target.closest('a')) {
     navLinks.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
   }
@@ -35,6 +35,58 @@ document.addEventListener('click', e => {
     burger.setAttribute('aria-expanded', 'false');
   }
 });
+
+// ── Objednání k lékaři ─────────────────────────────────────
+function initBookingDialog() {
+  const dialog = document.getElementById('booking-dialog');
+  if (typeof dialog?.showModal !== 'function') return;
+
+  const choices = document.getElementById('booking-doctors');
+  const emailLink = document.getElementById('booking-email');
+  const noPreference = choices.lastElementChild;
+  let returnFocus;
+
+  document.querySelectorAll('.team-card h4').forEach(heading => {
+    const name = heading.textContent.trim();
+    const subject = encodeURIComponent(`Objednání – ${name}`);
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `${emailLink.href}?subject=${subject}`;
+    link.textContent = name;
+    item.append(link);
+    choices.insertBefore(item, noPreference);
+  });
+
+  document.querySelectorAll('[data-booking]').forEach(trigger => {
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.setAttribute('aria-controls', dialog.id);
+    trigger.addEventListener('click', event => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      returnFocus = navLinks.contains(trigger) ? burger : trigger;
+      dialog.showModal();
+    });
+  });
+
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  dialog.addEventListener('close', () => {
+    returnFocus?.focus();
+  });
+
+  function openLinkedBooking() {
+    if (window.location.hash !== '#vyber-lekare' || dialog.open) return;
+    returnFocus = document.querySelector('#vyber-lekare [data-booking]');
+    dialog.showModal();
+  }
+
+  window.addEventListener('hashchange', openLinkedBooking);
+  openLinkedBooking();
+}
+
+initBookingDialog();
 
 // ── Cookies + externí obsah ───────────────────────────────
 const CONSENT_KEY = 'soreliaCookieConsent';

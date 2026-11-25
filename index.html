@@ -168,7 +168,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261118">
+  <link rel="stylesheet" href="style.css?v=20261125-2">
 </head>
 <body>
 
@@ -188,13 +188,13 @@
         <li><a href="#faq">Časté dotazy</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
         <li class="nav-cta-mob">
-          <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-primary">
+          <a href="mailto:info@sorelia-ortopedie.cz" data-booking class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
             Objednat se
           </a>
         </li>
       </ul>
-      <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-primary nav-cta-desk">
+      <a href="mailto:info@sorelia-ortopedie.cz" data-booking class="btn btn-primary nav-cta-desk">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
         Objednat se
       </a>
@@ -225,7 +225,7 @@
       <h1 id="hero-h1">Sorelia</h1>
       <p class="hero-lead">Specializovaná péče<br>o pohybový aparát.</p>
       <div class="hero-actions">
-        <a href="mailto:info@sorelia-ortopedie.cz" class="btn btn-primary">
+        <a href="mailto:info@sorelia-ortopedie.cz" data-booking class="btn btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           Objednat se
         </a>
@@ -333,12 +333,12 @@
       </div>
       <div class="odb-right">
         <div class="schedule-mini-cal" id="mini-calendar" aria-label="Miniaturní kalendář"></div>
-        <p class="schedule-contact-note">
+        <p class="schedule-contact-note" id="vyber-lekare">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="4" width="20" height="16" rx="2"/>
             <path d="M2 7l10 7 10-7"/>
           </svg>
-          <span>Objednávejte se <a href="mailto:info@sorelia-ortopedie.cz">e-mailem</a> nebo telefonicky na <a href="tel:+420725148051">725&nbsp;148&nbsp;051</a>.</span>
+          <span>Objednávejte se <a href="mailto:info@sorelia-ortopedie.cz" data-booking>e-mailem</a> nebo telefonicky na <a href="tel:+420725148051">725&nbsp;148&nbsp;051</a>.</span>
         </p>
       </div>
     </div>
@@ -541,7 +541,7 @@
       <dl class="faq-list">
         <div class="faq-item">
           <dt><button class="faq-btn" aria-expanded="false" aria-controls="fa1"><span>Jak se objednat?</span><span class="faq-icon" aria-hidden="true"></span></button></dt>
-          <dd class="faq-ans" id="fa1" hidden>Napište nám na <a href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a> nebo nás kontaktujte telefonicky na čísle <a href="tel:+420725148051">725&nbsp;148&nbsp;051</a> v ordinačních hodinách.</dd>
+          <dd class="faq-ans" id="fa1" hidden>Napište nám na <a href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a> nebo nás kontaktujte telefonicky na čísle <a href="tel:+420725148051">725&nbsp;148&nbsp;051</a> v ordinačních hodinách. Pokud se chcete objednat ke konkrétnímu lékaři, uveďte jeho jméno do předmětu e-mailu.</dd>
         </div>
         <div class="faq-item">
           <dt><button class="faq-btn" aria-expanded="false" aria-controls="fa2"><span>Přijímáte nové pacienty?</span><span class="faq-icon" aria-hidden="true"></span></button></dt>
@@ -648,9 +648,26 @@
 </footer>
 
 <!-- Floating CTA -->
-<a href="mailto:info@sorelia-ortopedie.cz" class="floating-cta" aria-label="Napsat e-mail">
+<a href="mailto:info@sorelia-ortopedie.cz" class="floating-cta" data-booking aria-label="Objednat se">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
 </a>
+
+<dialog class="booking-dialog" id="booking-dialog" aria-labelledby="booking-title">
+  <div class="booking-panel">
+    <div class="booking-heading">
+      <h2 id="booking-title">Ke komu se chcete objednat?</h2>
+      <form method="dialog">
+        <button class="booking-close" type="submit" aria-label="Zavřít">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </form>
+    </div>
+    <ul class="booking-doctors" id="booking-doctors">
+      <li class="booking-no-preference"><a href="mailto:info@sorelia-ortopedie.cz?subject=Objedn%C3%A1n%C3%AD">Bez preference lékaře</a></li>
+    </ul>
+    <p class="booking-note">Pokud se e-mail neotevře, napište na <a id="booking-email" href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a>. Pokud se chcete objednat ke konkrétnímu lékaři, uveďte jeho jméno do předmětu.</p>
+  </div>
+</dialog>
 
 <div class="cookie-banner" id="cookie-banner" hidden>
   <div class="cookie-banner-inner">
@@ -677,6 +694,6 @@
   </div>
 </div>
 
-<script src="main.js?v=20261115"></script>
+<script src="main.js?v=20261125"></script>
 </body>
 </html>
