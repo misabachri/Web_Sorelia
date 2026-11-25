@@ -168,7 +168,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261125-2">
+  <link rel="stylesheet" href="style.css?v=20261125-8">
 </head>
 <body>
 
@@ -665,7 +665,16 @@
     <ul class="booking-doctors" id="booking-doctors">
       <li class="booking-no-preference"><a href="mailto:info@sorelia-ortopedie.cz?subject=Objedn%C3%A1n%C3%AD">Bez preference lékaře</a></li>
     </ul>
-    <p class="booking-note">Pokud se e-mail neotevře, napište na <a id="booking-email" href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a>. Pokud se chcete objednat ke konkrétnímu lékaři, uveďte jeho jméno do předmětu.</p>
+    <p class="booking-note">
+      <svg class="booking-note-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 8v5m0 3h.01"/>
+      </svg>
+      <span>
+        Pokud se <strong>e-mail neotevře</strong>, napište na <span class="booking-note-address"><a id="booking-email" href="mailto:info@sorelia-ortopedie.cz">info@sorelia-ortopedie.cz</a>.</span><br>
+        Pokud se chcete objednat ke konkrétnímu lékaři, uveďte jeho <strong>jméno do předmětu</strong>.
+      </span>
+    </p>
   </div>
 </dialog>
 

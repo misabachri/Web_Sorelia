@@ -1829,11 +1829,11 @@ html:has(.booking-dialog[open]) { overflow: hidden; }
 html:has(.booking-dialog[open]) body { overflow-x: clip; }
 
 .booking-dialog {
-  width: min(27rem, calc(100% - 1.5rem));
+  width: min(29rem, calc(100% - 1.5rem));
   max-height: calc(100% - 1.5rem);
   margin: auto;
   border: 1px solid var(--grey);
-  border-radius: 16px;
+  border-radius: var(--r);
   background: var(--white);
   color: var(--black);
   overscroll-behavior: contain;
@@ -1841,7 +1841,7 @@ html:has(.booking-dialog[open]) body { overflow-x: clip; }
 
 .booking-dialog::backdrop { background: rgba(8, 7, 5, 0.45); }
 
-.booking-panel { padding: clamp(1rem, 4vw, 1.6rem); }
+.booking-panel { padding: clamp(.8rem, 4vw, 1.6rem); }
 
 .booking-heading {
   display: flex;
@@ -1902,16 +1902,29 @@ html:has(.booking-dialog[open]) body { overflow-x: clip; }
 }
 
 .booking-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .45rem;
   margin-top: .9rem;
   color: var(--charcoal);
   font-size: .84rem;
   line-height: 1.45;
 }
 
+.booking-note-icon {
+  flex: none;
+  margin-top: .12rem;
+  color: var(--red);
+}
+
+.booking-note-address {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .booking-note a {
   color: var(--red);
   text-decoration: underline;
-  overflow-wrap: anywhere;
 }
 
 /* ================================================================
